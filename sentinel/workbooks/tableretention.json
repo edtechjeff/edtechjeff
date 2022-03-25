@@ -1,0 +1,358 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "loadType": "always",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "** Author **\r\nPaul Collins\r\n\r\n** Version 1.0 **\r\n2020-06-16\r\n - Initial version\r\n \t* using ARG to build workspace table\r\n\t * using API to return current values Data Retention values"
+            },
+            "conditionalVisibility": {
+              "parameterName": "_",
+              "comparison": "isEqualTo",
+              "value": "_"
+            },
+            "name": "text - 8"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "# Azure Monitor Workspace Information\r\n\r\nInformation in relation to Workspace including:\r\n* Global Data Retention setting\r\n* Pricing Tier\r\n* Location\r\n* Daily Volume Data Cap\r\n\r\nSelecting a Workspace will allow you to show a full table of Retention setting for individual tables or you have an option to searh by individual tables.\r\n\r\nMore Information on setting Retention values for Data Types can be found here in the [Azure Monitor Documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/manage-cost-storage#retention-by-data-type)."
+            },
+            "name": "text - 0"
+          },
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "parameters": [
+                {
+                  "id": "4c6c999c-7a18-44db-bfd6-e64f167321d6",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "Subscription",
+                  "type": 6,
+                  "value": null,
+                  "typeSettings": {
+                    "additionalResourceOptions": [],
+                    "includeAll": false
+                  }
+                },
+                {
+                  "id": "72a6f879-b594-48df-b852-311fceb5c123",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "Workspace",
+                  "type": 5,
+                  "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| project id, label = name",
+                  "crossComponentResources": [
+                    "{Subscription}"
+                  ],
+                  "value": null,
+                  "isHiddenWhenLocked": true,
+                  "typeSettings": {
+                    "additionalResourceOptions": []
+                  },
+                  "queryType": 1,
+                  "resourceType": "microsoft.resourcegraph/resources"
+                }
+              ],
+              "style": "above",
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "name": "parameters - 1"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "resources\r\n| where type =~ 'microsoft.operationalinsights/workspaces' \r\n| where id has \"{Workspace}\"\r\n| extend state = trim(' ', tostring(properties.provisioningState))\r\n\t\t,sku   = trim(' ', tostring(properties.sku.name))\r\n        ,skuUpdate = trim(' ', tostring(properties.sku.lastSkuUpdate))\r\n\t\t,retentionDays = trim(' ', tostring(properties.retentionInDays))\r\n\t\t,dailyquotaGB  = trim(' ', tostring(properties.workspaceCapping.dailyQuotaGb))\r\n| extend dailyquotaGB = iif(dailyquotaGB !=-1.0, dailyquotaGB,\"Not set\")\r\n| extend skuUpdate    = iif(strlen(skuUpdate) > 0, skuUpdate,\"Unknown\")\r\n| project ['Workspace Name']=id, ['Resource Group']=resourceGroup, location, ['Data Retention(days)']=retentionDays, ['Last known SKU update']=skuUpdate, ['Daily Data Cap']=dailyquotaGB, ['Licence']=sku",
+              "size": 4,
+              "exportedParameters": [
+                {
+                  "fieldName": "Workspace Name",
+                  "parameterName": "ex_ws",
+                  "parameterType": 1
+                },
+                {
+                  "fieldName": "Resource Group",
+                  "parameterName": "ex_rg",
+                  "parameterType": 1
+                },
+                {
+                  "fieldName": "Data Retention(days)",
+                  "parameterName": "ex_retention",
+                  "parameterType": 1
+                }
+              ],
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "crossComponentResources": [
+                "{Subscription}"
+              ],
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Data Retention(days)",
+                    "formatter": 0,
+                    "formatOptions": {},
+                    "numberFormat": {
+                      "unit": 0,
+                      "options": {
+                        "style": "decimal",
+                        "useGrouping": false
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "Last known SKU update",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "icons",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "is Empty",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnMatch": "Daily Data Cap",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "icons",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "==",
+                          "thresholdValue": "not set",
+                          "representation": "Unavailable",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "info",
+                          "text": "{0}{1}"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sortBy": [
+                  {
+                    "itemKey": "$gen_number_Data Retention(days)_3",
+                    "sortOrder": 2
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "$gen_number_Data Retention(days)_3",
+                  "sortOrder": 2
+                }
+              ]
+            },
+            "name": "query - 2"
+          },
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "parameters": [
+                {
+                  "id": "4bd2742a-f645-4f21-b0f4-2365c6b70c80",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "ReportOption",
+                  "label": "Report Option",
+                  "type": 2,
+                  "isRequired": true,
+                  "value": null,
+                  "typeSettings": {
+                    "additionalResourceOptions": []
+                  },
+                  "jsonData": "[\r\n    { \"value\":\"1\", \"label\":\"Full List\", \"selected\":false },\r\n    { \"value\":\"2\", \"label\":\"View by Table\", \"selected\":false }\r\n]",
+                  "timeContext": {
+                    "durationMs": 86400000
+                  }
+                }
+              ],
+              "style": "above",
+              "queryType": 0
+            },
+            "customWidth": "20",
+            "name": "parameters - 9"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "💡 _View the full list or search by individual tables using the dropdown list after a workspace has been selected in the table above_"
+            },
+            "customWidth": "80",
+            "name": "text - 7"
+          },
+          {
+            "type": 9,
+            "content": {
+              "version": "KqlParameterItem/1.0",
+              "parameters": [
+                {
+                  "id": "6db44852-1a01-4e67-9e98-2449b80ef19b",
+                  "version": "KqlParameterItem/1.0",
+                  "name": "Table_List",
+                  "label": "Table List",
+                  "type": 2,
+                  "description": "Select a workspace from the table above to populate this picker.",
+                  "query": "{\"version\":\"ARMEndpoint/1.0\",\"data\":null,\"headers\":[],\"method\":\"GET\",\"path\":\"{ex_ws}/Tables\",\"urlParams\":[{\"key\":\"api-version\",\"value\":\"2017-04-26-preview\"}],\"batchDisabled\":false,\"transformers\":[{\"type\":\"jsonpath\",\"settings\":{\"tablePath\":\"$.value\",\"columns\":[{\"path\":\"$.name\",\"columnid\":\"name\"}]}}]}",
+                  "value": null,
+                  "typeSettings": {
+                    "additionalResourceOptions": []
+                  },
+                  "queryType": 12
+                }
+              ],
+              "style": "above",
+              "queryType": 12
+            },
+            "customWidth": "20",
+            "conditionalVisibility": {
+              "parameterName": "ReportOption",
+              "comparison": "isEqualTo",
+              "value": "2"
+            },
+            "name": "parameters - 5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"ARMEndpoint/1.0\",\"data\":null,\"headers\":[],\"method\":\"GET\",\"path\":\"{ex_ws}/Tables/{Table_List}\",\"urlParams\":[{\"key\":\"api-version\",\"value\":\"2017-04-26-preview\"}],\"batchDisabled\":false,\"transformers\":[{\"type\":\"jsonpath\",\"settings\":{\"tablePath\":\"\",\"columns\":[{\"path\":\"$.name\",\"columnid\":\"name\"},{\"path\":\"$.properties.retentionInDays\",\"columnid\":\"p_table_retention\"}]}}]}",
+              "size": 4,
+              "queryType": 12,
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "p_table_retention",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "icons",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "==",
+                          "thresholdValue": "false",
+                          "representation": "Blank",
+                          "text": "Global or Table does not exist"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "Blank",
+                          "text": "{0}"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "labelSettings": [
+                  {
+                    "columnId": "name",
+                    "label": "Name"
+                  },
+                  {
+                    "columnId": "p_table_retention",
+                    "label": "Table Retention (Days)"
+                  }
+                ]
+              }
+            },
+            "customWidth": "80",
+            "conditionalVisibilities": [
+              {
+                "parameterName": "ReportOption",
+                "comparison": "isEqualTo",
+                "value": "2"
+              },
+              {
+                "parameterName": "Table_List",
+                "comparison": "isNotEqualTo"
+              }
+            ],
+            "name": "query - 7"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "{\"version\":\"ARMEndpoint/1.0\",\"data\":null,\"headers\":[],\"method\":\"GET\",\"path\":\"{ex_ws}/Tables\",\"urlParams\":[{\"key\":\"api-version\",\"value\":\"2017-04-26-preview\"}],\"batchDisabled\":false,\"transformers\":[{\"type\":\"jsonpath\",\"settings\":{\"tablePath\":\"$.value\",\"columns\":[{\"path\":\"$.name\",\"columnid\":\"name\"},{\"path\":\"$.properties.RetentionInDays\",\"columnid\":\"table_retention\"}]}}]}",
+              "size": 0,
+              "queryType": 12,
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "table_retention",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "icons",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "==",
+                          "thresholdValue": "false",
+                          "text": "Global or Table does not exist"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "Blank",
+                          "text": "{0}"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "labelSettings": [
+                  {
+                    "columnId": "name",
+                    "label": "Table Name"
+                  },
+                  {
+                    "columnId": "table_retention",
+                    "label": "Table Retention (Days)"
+                  }
+                ]
+              }
+            },
+            "customWidth": "100",
+            "conditionalVisibilities": [
+              {
+                "parameterName": "ex_ws",
+                "comparison": "isNotEqualTo"
+              },
+              {
+                "parameterName": "ReportOption",
+                "comparison": "isEqualTo",
+                "value": "1"
+              }
+            ],
+            "name": "query - 3 - Copy"
+          }
+        ]
+      },
+      "name": "group - 1"
+    }
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
