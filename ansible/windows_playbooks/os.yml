@@ -1,0 +1,11 @@
+---
+- hosts: hyperv.DOWNS.LAN
+  gather_facts: true
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+  - name: winping
+    setup:
+
+

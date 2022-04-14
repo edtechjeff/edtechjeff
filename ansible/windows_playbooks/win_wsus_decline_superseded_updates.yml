@@ -1,0 +1,17 @@
+---
+- hosts: wsus
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+  - name: winping
+    win_shell:
+      'Get-WSUSUpdate -Classification All -Status Any -Approval AnyExceptDeclined | Where-Object { $_.Update.GetRelatedUpdates(([Microsoft.UpdateServices.Administration.UpdateRelationship]::UpdatesThatSupersedeThisUpdate)).Count -gt 0 } | Deny-WsusUpdate'
+
+    register: find_output
+ 
+  - debug:
+      msg: "{{ find_output.stdout.split('\n') }}"
+
+

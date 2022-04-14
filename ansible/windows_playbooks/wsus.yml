@@ -1,0 +1,16 @@
+---
+- hosts: wsus
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+  - name: winping
+    win_shell:
+      'Get-WsusServer "hyperv" -PortNumber 8530 | Invoke-WsusServerCleanup -CleanupObsoleteComputers -CleanupObsoleteUpdates -CleanupUnneededContentFiles -DeclineExpiredUpdates -DeclineSupersededUpdates'
+    register: find_output
+ 
+  - debug:
+      msg: "{{ find_output.stdout.split('\n') }}"
+
+
