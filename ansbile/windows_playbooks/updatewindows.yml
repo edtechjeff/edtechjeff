@@ -1,0 +1,27 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+  - name: create log folder if not present
+    win_file:
+      path: c:\temp
+      state: directory
+
+  - name: delete log file if present
+    win_file:
+      path: c:\temp\updates.txt
+      state: absent
+
+  - name: Install all security, criticals without a scheduled task
+    win_updates:
+      category_names:
+        - SecurityUpdates
+        - CriticalUpdates
+      log_path: c:\temp\updates.txt

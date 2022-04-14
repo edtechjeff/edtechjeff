@@ -1,0 +1,3 @@
+Create File on your control station so nano will highlight colors
+File is located in sudo nano /usr/share/nano/
+File is called yaml.nanorc

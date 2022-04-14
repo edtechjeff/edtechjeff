@@ -1,0 +1,2 @@
+---
+idrac_password: "{{ vault_idrac_password }}"

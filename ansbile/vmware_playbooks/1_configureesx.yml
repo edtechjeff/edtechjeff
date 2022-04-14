@@ -1,0 +1,148 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/vmware.yml
+  tasks:
+# Configure DNS, Domain and Hostname of ESX Host
+  - name: Configure DNS and Hostname
+    vmware_dns_config:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      change_hostname_to: "{{ VMWARE_HOST }}"
+      domainname: "{{ domainname }}"
+      dns_servers:
+          - "{{ dns_server1 }}"
+          - "{{ dns_server2 }}"
+      validate_certs: False
+    delegate_to: localhost
+# Create vMotion vswitch
+  - name: Add vMotion Switch
+    vmware_vswitch:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      switch: "{{ vswitch1 }}"
+      nics:
+        - "{{ vmnic_1 }}"
+        - "{{ vmnic_4 }}"
+      mtu: 1500
+      validate_certs: False
+      state: present
+    delegate_to: localhost
+# Create vsiwtch for VM network
+  - name: Add Production Switch
+    vmware_vswitch:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      switch: "{{ vswitch2 }}"
+      nics:
+        - "{{ vmnic_2 }}"
+        - "{{ vmnic_5 }}"
+      mtu: 1500
+      validate_certs: False
+      state: present
+    delegate_to: localhost
+# Add addiitional vmnic to managment vswitch
+  - name: Add vmnic to Management Switch
+    vmware_vswitch:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      switch: "{{ vswitch0 }}"
+      nics:
+        - "{{ vmnic_3 }}"
+      mtu: 1500
+      validate_certs: False
+      state: present
+    delegate_to: localhost
+# Create portgroup for vMotion
+  - name: Add vMotion Portgroup
+    vmware_portgroup:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      hosts: "{{ esxi_hostname }}"
+      switch: "{{ vswitch1 }}"
+      portgroup: "{{ portgroup_name_vm }}"
+      vlan_id: "{{ vlan_id_vm }}"
+      state: present
+      validate_certs: False
+    delegate_to: localhost
+# Add management network to VM Portgroup
+  - name: Add Management Network VM Portgroup
+    vmware_portgroup:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      hosts: "{{ esxi_hostname }}"
+      switch: "{{ vswitch2 }}"
+      portgroup: "{{ portgroup_name_pr }}"
+      vlan_id: "{{ vlan_id_pr }}"
+      state: present
+      validate_certs: False
+    delegate_to: localhost
+# Add vMotion IP address
+  - name: Add vMotion vmkernel port with vMotion TCP/IP stack
+    vmware_vmkernel:
+      hostname: '{{ esxi_hostname }}'
+      username: '{{ esxi_username }}'
+      password: '{{ esxi_password }}'
+      esxi_hostname: '{{ esxi_hostname }}'
+      vswitch_name: "{{ vswitch1 }}"
+      portgroup_name: "{{ portgroup_name_vm }}"
+      network:
+        type: 'static'
+        ip_address: "{{ ip_address }}"
+        subnet_mask: "{{ subnet_mask }}"
+        tcpip_stack: vmotion
+      state: present
+      validate_certs: False
+    delegate_to: localhost
+# Set NTP Servers
+  - name: Set NTP Servers
+    vmware_host_ntp:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      ntp_servers:
+          - "{{ ntp_servers }}"
+      validate_certs: False
+      state: present
+    delegate_to: localhost
+# Start NTP Service
+  - name: Start ntpd Service
+    vmware_host_service_manager:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      service_name: ntpd
+      service_policy: 'on'
+      state: present
+      validate_certs: False
+    delegate_to: localhost
+    register: results
+# Start SSH Service
+  - name: Start ssh Service
+    vmware_host_service_manager:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      service_name: TSM-SSH
+      service_policy: 'on'
+      state: present
+      validate_certs: False
+    delegate_to: localhost

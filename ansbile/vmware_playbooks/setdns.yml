@@ -1,0 +1,23 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/vmware.yml
+  tasks:
+  - name: Configure DNS and Hostname
+    vmware_dns_config:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      change_hostname_to: "{{ esxi_hostname }}"
+      domainname: "{{ domainname }}"
+      dns_servers:
+          - "{{ dns_server1 }}"
+          - "{{ dns_server2 }}"
+      validate_certs: False
+    delegate_to: localhost

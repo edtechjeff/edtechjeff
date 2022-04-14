@@ -1,0 +1,20 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  connection: local
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/switches.yml
+  tasks:
+  - name: gather running config
+    ios_command:
+      commands:
+        - show run
+      timeout: 30
+    register: config
+
+  - debug: msg="{{ config.stdout_lines }}"
