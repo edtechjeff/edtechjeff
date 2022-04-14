@@ -1,0 +1,4 @@
+---
+collections:
+  - name: azure.azcollection
+    source: https://galaxy.ansible.com
