@@ -1,0 +1,9 @@
+---
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+ansible_user: ADMIN USER
+ansible_password: ADMIN PASSWORD
+ansible_winrm_transport: kerberos
+ansible_port: 5985
+dns_server: DNS SERVER
+dns_zone: DNS ZONE

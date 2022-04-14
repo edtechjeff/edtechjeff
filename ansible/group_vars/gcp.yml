@@ -1,0 +1,4 @@
+---
+plugin: gcp_compute
+regions: us-east1
+
