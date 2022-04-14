@@ -1,0 +1,14 @@
+---
+- hosts: 192.168.1.254
+  gather_facts: false
+  connection: local
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/switches.yml
+  tasks:
+  - name: Add MOTD Banner
+    ios_interfaces:
+      config:
+        - name: GigabitEthernet1/0/1
+          enabled: True
+
