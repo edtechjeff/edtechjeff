@@ -1,0 +1,17 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  connection: local
+  gather_facts: True
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/idrac.yml
+  tasks:
+  - name: Get Lifecycle Controller Status
+    dellemc_get_firmware_inventory:
+       idrac_ip:   "{{ IP or FQDN }}"
+       idrac_user: "{{ idrac_user }}"
+       idrac_password: "{{ idrac_password }}"

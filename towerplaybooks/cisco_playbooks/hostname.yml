@@ -1,0 +1,22 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  connection: local
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/switches.yml
+  tasks:
+    - name: change IP
+      ios_config:
+        lines:
+          - hostname "{{ hostname }}"
+      notify: "save ios"
+  handlers:
+    - name: save ios
+      ios_config:
+        save_when: modified
+      when: not ansible_check_mode

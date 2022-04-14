@@ -1,0 +1,16 @@
+---
+- hosts: "{{ ansible_play_batch }}"
+  gather_facts: false
+  connection: local
+  tasks:
+  - name: gather running config
+    ios_command:
+      commands:
+        - show run
+      timeout: 30
+    register: config
+
+  - name: backup
+    copy:
+      content: "{{ config.stdout[0] }}"
+      dest: "/etc/ansible/backups/config_{{ inventory_hostname }}.txt"

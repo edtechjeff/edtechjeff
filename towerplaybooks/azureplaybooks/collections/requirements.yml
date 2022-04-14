@@ -1,0 +1,4 @@
+---
+collections:
+  - name: azure.azcollection
+    source: https://cloud.redhat.com/api/automation-hub/

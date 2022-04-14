@@ -1,0 +1,9 @@
+---
+- name: Check Resources in a Resource Group
+  hosts: "{{ ansible_play_batch }}"
+  gather_facts: false
+  tasks:
+  - name: Query all the resources in the resource group
+    azure_rm_resource_info:
+      resource_group: "{{ resource_group }}"
+      resource_type: resources

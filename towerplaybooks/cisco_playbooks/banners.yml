@@ -1,0 +1,13 @@
+---
+- hosts: "{{ ansible_play_batch }}"
+  gather_facts: false
+  connection: local
+  tasks:
+  - name: configure banner
+    cisco.ios.ios_banner:
+      banner: login
+      text: |
+        this is my login banner
+        that contains a multiline
+        string
+      state: present

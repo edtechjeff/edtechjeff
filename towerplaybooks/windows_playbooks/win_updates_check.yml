@@ -1,0 +1,22 @@
+---
+- name: Checks clients for needed updates
+  hosts: "{{ ansible_play_batch }}"
+  gather_facts: false
+  tasks:
+  - name: Check for missing updates
+    win_updates:
+      category_names:
+        - SecurityUpdates
+        - CriticalUpdates
+        - DefinitionUpdates
+      state: searched
+    register: kb
+    when: guest.guestFamily == "windowsGuest"
+  - name: OutputCount
+    debug:
+      var: kb.found_update_count
+    when: guest.guestFamily == "windowsGuest"
+  - name: OutputUpdate
+    debug:
+      var: kb.updates
+    when: guest.guestFamily == "windowsGuest"
