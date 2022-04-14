@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  gather_facts: false
+  become: false
+  vars:
+    csvfile: "{{ lookup('file', '/etc/ansible/csv/domain_users.csv') }}"
+  tasks:
+  - name: Parse CSV To YAML
+    template:
+      src: "/etc/ansible/templates/domain_users_csv.j2"
+      dest: "/etc/ansible/files/domain_users.yml"
+    run_once: true
+- hosts: winservers
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+    - /etc/ansible/files/domain_users.yml
+  tasks:
+  - name: Add Users
+    win_domain_user:
+      name: "{{ item.key }}"
+      firstname: "{{ item.value.firstname}}"
+      surname: "{{ item.value.surname}}"
+      password: "{{ item.value.password }}"
+      email: "{{ item.value.email }}"
+      upn: "{{ item.value.upn }}"
+      password_expired: yes
+      attributes:
+        displayName: '{{ item.value.firstname }} {{ item.value.surname }}'
+    loop: "{{ lookup('dict', users) }}"

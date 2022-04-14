@@ -1,0 +1,25 @@
+vcenter_hostname: "{{ vcenter_username }}"
+vcenter_username: "{{ vcenter_username }}"
+vcenter_password: "{{ vault_vcenter_password }}"
+datacenter_name: "{{ datacenter_name }}"
+cluster_name: "{{ cluster_name }}"
+esxi_username: "{{ esxi_username }}"
+esxi_password: "{{ vault_esxi_password }}"
+domainname: "{{ domainname }}"
+dns_server1: "{{ dns_server1 }}"
+dns_server2: "{{ dns_server2 }}"
+ntp_servers:
+  "{{ ntp_server1 }}"
+  "{{ ntp_server2 }}"
+vswitch0: vSwitch0
+vswitch1: vmotion
+vswitch2: production
+vmnic_1: vmnic1
+vmnic_2: vmnic2
+vmnic_3: vmnic3
+vmnic_4: vmnic4
+vmnic_5: vmnic5
+portgroup_name_vm: vMotion
+portgroup_name_pr: Production
+vlan_id_vm: 4095
+vlan_id_pr: 0

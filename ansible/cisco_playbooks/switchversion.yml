@@ -1,0 +1,19 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  connection: local
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/switches.yml
+  tasks:
+    - name: Show Version
+      ios_command:
+          commands: show version
+      register: result
+    - name: Results
+      debug:
+        msg: "{{ result.stdout_lines|list }}"

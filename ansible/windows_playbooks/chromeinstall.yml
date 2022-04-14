@@ -1,0 +1,19 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+    - name: install chrome
+      win_package:
+        path: \\servername\sharename\Chrome\GoogleChromeStandaloneEnterprise64.msi
+        product_id: '{6A6D3422-8127-3867-A83C-56B555636ECA}'
+        arguments: /qb
+        state: present
+        user_name: DOMAIN\USERNAME
+        user_password: PASSWORD

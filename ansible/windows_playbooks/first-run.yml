@@ -1,0 +1,14 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  roles:
+     - disable-ieesc
+     - enable-rdp
+     - fw-rdp

@@ -1,0 +1,7 @@
+---
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+ansible_user: aadmin@DOWNS.LAN
+ansible_password: "{{ vault_ansible_windows_password }}"
+ansible_winrm_transport: kerberos
+ansible_port: 5985

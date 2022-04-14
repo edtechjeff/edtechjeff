@@ -1,0 +1,28 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  connection: local
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/switches.yml
+  tasks:
+  - name: Add MOTD Banner
+    ios_banner:
+      banner: motd
+      text: "{{ text_for_motd }}"
+      state: present
+    notify: "save ios"
+  - name: Add Login Banner
+    ios_banner:
+      banner: login
+      text: "{{ text_for_login }}"
+      state: present
+    notify: "save ios"
+  handlers:
+    - name: save ios
+      ios_config:
+        save_when: modified

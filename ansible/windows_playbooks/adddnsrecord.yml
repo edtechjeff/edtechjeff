@@ -1,0 +1,19 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+  - name: Add DNS Record
+    win_dns_record:
+      computer_name: "{{ dns_server }}"
+      name: "{{ dns_record_name }}"
+      type: A
+      value: "{{ ip_address }}"
+      zone: "{{ dns_zone }}"
+      state: present

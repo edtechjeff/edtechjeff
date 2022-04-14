@@ -1,0 +1,24 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/vmware.yml
+  tasks:
+  - name: Add Host to Cluster
+    vmware_host:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      datacenter_name: "{{ datacenter_name }}"
+      cluster: "{{ cluster_name }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      esxi_username: "{{ esxi_username }}"
+      esxi_password: "{{ esxi_password }}"
+      validate_certs: False
+      state: present
+    delegate_to: localhost

@@ -1,0 +1,76 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/vmware.ym
+  tasks:
+  - name: Add vMotion Switch
+    vmware_vswitch:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      switch: "{{ vswitch1 }}"
+      nics:
+        - "{{ vmnic_1 }}"
+        - "{{ vmnic_4 }}"
+      mtu: 1500
+      validate_certs: False
+      state: present
+    delegate_to: localhost
+  - name: Add Production Switch
+    vmware_vswitch:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      switch: "{{ vswitch2 }}"
+      nics:
+        - "{{ vmnic_2 }}"
+        - "{{ vmnic_5 }}"
+      mtu: 1500
+      validate_certs: False
+      state: present
+    delegate_to: localhost
+  - name: Add to Management Switch
+    vmware_vswitch:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      switch: "{{ vswitch0 }}"
+      nics:
+        - "{{ vmnic_3 }}"
+      mtu: 1500
+      validate_certs: False
+      state: present
+    delegate_to: localhost
+  - name: Add vMotion Portgroup
+    vmware_portgroup:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      hosts: "{{ esxi_hostname }}"
+      switch: "{{ vswitch1 }}"
+      portgroup: "{{ portgroup_name_vm }}"
+      vlan_id: "{{ vlan_id_vm }}"
+      state: present
+      validate_certs: False
+    delegate_to: localhost
+  - name: Add Management Network VM Portgroup
+    vmware_portgroup:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      hosts: "{{ esxi_hostname }}"
+      switch: "{{ vswitch2 }}"
+      portgroup: "{{ portgroup_name_pr }}"
+      vlan_id: "{{ vlan_id_pr }}"
+      state: present
+      validate_certs: False
+    delegate_to: localhost

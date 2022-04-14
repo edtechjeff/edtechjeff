@@ -1,0 +1,40 @@
+---
+- name: Deploy VM from template
+  vmware_guest:
+    validate_certs: False
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_user }}"
+    password: "{{ vcenter_pass }}"
+    esxi_hostname: "{{ esxi_hostname  }}"
+    folder: "{{ folder }}"
+    datacenter: "{{ datacenter }}"
+    name: "{{ inventory_hostname }}"
+    state: poweredon
+    template: "{{ vmtemplate }}"
+    disk:
+      - size_gb: "{{ size_gb }}"
+        type: thin
+        datastore: "{{ datastore }}"
+    networks:
+    - name: "{{ vlan }}"
+      type: static
+      ip: '{{ ip }}'
+      netmask: '{{ netmask }}'
+      gateway: '{{ gateway }}'
+      dns_servers:
+        - "{{ dns_server1 }}"
+        - "{{ dns_server2 }}"
+    hardware:
+      memory_mb: "{{ memory_mb }}"
+    wait_for_ip_address: True
+    customization:
+      domainadmin: "{{ domainadmin }}"
+      domainadminpassword: "{{ domainadminpassword }}"
+      joindomain: "{{ joindomain }}"
+      timezone: "{{ timezone }}"
+      password: "{{ password }}"
+      autologon: True
+      autologoncount: 1
+      runonce:
+      - powershell.exe -ExecutionPolicy Unrestricted -File C:\temp\ansible.ps1 -ForceNewSSLCert -EnableCredSSP
+  delegate_to: localhost
