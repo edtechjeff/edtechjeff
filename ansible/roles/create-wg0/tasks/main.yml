@@ -1,0 +1,9 @@
+---
+- name: create wg0 file
+  template:
+    src: /etc/ansible/roles/create-wg0/files/wg0.conf
+    dest: /etc/wireguard/wg0.conf
+    remote_src: no
+    owner: root
+    group: root
+    mode: 0740

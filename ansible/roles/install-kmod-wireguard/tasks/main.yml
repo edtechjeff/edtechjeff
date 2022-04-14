@@ -1,0 +1,5 @@
+---
+- name: Install kmod-wireguard
+  yum:
+    name: kmod-wireguard
+    state: present

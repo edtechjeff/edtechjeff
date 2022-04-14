@@ -1,0 +1,5 @@
+---
+- name: install wireguard-tools
+  yum:
+    name: wireguard-tools
+    state: present

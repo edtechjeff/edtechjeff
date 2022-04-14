@@ -1,0 +1,9 @@
+---
+- name: create 99-custom
+  template:
+    src: /etc/ansible/roles/add-99-custom/files/99-custom.conf
+    dest: /etc/sysctl.d/99-custom.conf
+    remote_src: no
+    owner: root
+    group: root
+    #mode: 0740

@@ -1,0 +1,5 @@
+---
+- name: create keys
+    shell:
+      chdir: /etc/wireguard
+      cmd: sh -c 'umask 077; wg genkey | tee privatekey | wg pubkey > publickey'

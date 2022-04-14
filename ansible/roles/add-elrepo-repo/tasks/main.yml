@@ -1,0 +1,5 @@
+---
+- name: Install elrepo Respository
+  yum:
+    name: elrepo-release
+    state: present

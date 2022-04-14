@@ -1,0 +1,9 @@
+---
+- name: copy file
+  template:
+    src: /etc/ansible/roles/add-file/files/wireguard.xml
+    dest: /etc/firewalld/services/wireguard.xml
+    remote_src: no
+    owner: root
+    group: root
+    mode: 0740

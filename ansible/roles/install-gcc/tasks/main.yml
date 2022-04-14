@@ -1,0 +1,5 @@
+---
+- name: Install GCC
+    yum:
+      name: gcc
+      state: latest
