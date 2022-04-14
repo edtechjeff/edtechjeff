@@ -1,0 +1,14 @@
+---
+- name: create bucket
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+  tasks:
+  - name: create bucket
+    gcp_storage_bucket:
+      name: ansible_bucket
+      project: weighty-casing-305115
+      auth_kind: serviceaccount
+      service_account_file: /etc/ansible/serviceaccount/weighty-casing-305115-51e6b0415be4.json
+      state: absent

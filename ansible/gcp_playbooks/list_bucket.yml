@@ -1,0 +1,17 @@
+---
+- name: create bucket
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+  tasks:
+  - name: create bucket
+    gcp_compute_backend_bucket_info:
+      filters:
+      - name = storage-lab-cli-edtechjeff
+      project: weighty-casing-305115
+      auth_kind: serviceaccount
+      service_account_file: /etc/ansible/serviceaccount/weighty-casing-305115-51e6b0415be4.json
+    register: buckets
+  - name: output
+    debug: var=buckets.stdout_lines
