@@ -1,0 +1,20 @@
+---
+users:
+  randywatts: 
+    firstname: randy
+    surname: watts
+    password: Better2gether!
+    email: randywatts@edtechjeff.com
+    upn: jeffdowns@downs.lan
+  tomward: 
+    firstname: tom
+    surname: ward
+    password: Better2gether!
+    email: tomward@edtechjeff.com
+    upn: tomward@downs.lan
+  bobwilson: 
+    firstname: bob
+    surname: wilson
+    password: Better2gether!
+    email: bobwilson@edtechjeff.com
+    upn: bobwilson@downs.lan
