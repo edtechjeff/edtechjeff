@@ -1,0 +1,9 @@
+---
+plugin: gcp_compute
+projects:
+  - weighty-casing-305115
+zones:
+  - us-east1-b
+filters: []
+auth_kind: serviceaccount
+service_account_file: /etc/ansible/serviceaccount/weighty-casing-305115-51e6b0415be4.json
