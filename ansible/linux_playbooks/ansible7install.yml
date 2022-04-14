@@ -1,0 +1,94 @@
+---
+- vars_prompt:
+   - name: "Host"
+     prompt: "Which Host"
+     private: no
+  hosts: "{{ Host }}"
+  become: true
+  become_user: root  
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/linux.yml
+  tasks:
+  - name: Install EPEL Respository
+    yum:
+      name: epel-release
+      state: present
+  - name: Install GCC
+    yum:
+      name: gcc
+      state: latest
+  - name: Install python-devel
+    yum:
+      name: python-devel
+      state: latest
+  - name: Instll krb5-devel
+    yum:
+      name: krb5-devel
+      state: latest
+  - name: Install krb5-workstation
+    yum:
+      name: krb5-workstation
+      state: latest
+  - name: python-pip
+    yum:
+      name: python-pip
+      state: latest
+  - name: Install git
+    yum:
+      name: git
+      state: latest
+  - name: Install svn
+    yum:
+      name: svn
+      state: latest
+  - name: Install VIM Enhanced
+    yum:
+      name: vim-enhanced
+      state: latest
+  - name: Install pywinrm
+    pip:
+      name: pywinrm
+      state: latest
+  - name:  Install pywinrm[kerberos]
+    pip: 
+      name: pywinrm[kerberos]
+      state: latest
+  - name: Install pyvmomi
+    pip:
+      name: pyvmomi
+      state: latest
+  - name : Install Ansible
+    yum:
+      name: ansible
+      state: latest
+  - name: Change 1st line of krb5.conf file
+    replace:
+      path: /etc/krb5.conf
+      regexp: '# default_realm = EXAMPLE.COM'
+      replace: ' default_realm = DOWNS.LAN'
+  - name: Change 2nd line of krb5.conf file
+    replace:
+      path: /etc/krb5.conf
+      regexp: '# EXAMPLE.COM = {'
+      replace: ' DOWNS.LAN = {'
+  - name: Change 3rd line of krb5.conf file
+    replace:
+      path: /etc/krb5.conf
+      regexp: '#  kdc = kerberos.example.com'
+      replace: '  kdc= dc01.DOWNS.LAN'
+  - name: Change 4th line of krb5.conf file
+    replace:
+      path: /etc/krb5.conf
+      regexp: '#  admin_server = kerberos.example.com'
+      replace: '  admin_server = dc01.DOWNS.LAN'
+  - name: Change 5th line of krb5.conf file
+    replace:
+      path: /etc/krb5.conf
+      regexp: '# }'
+      replace: '}'
+  - name: Change 6th line of krb5.conf file
+    replace:
+      path: /etc/krb5.conf
+      regexp: '# .example.com = EXAMPLE.COM'
+      replace: ' .DOWNS.LAN = DOWNS.LAN'
