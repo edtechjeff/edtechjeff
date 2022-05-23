@@ -1,0 +1,11 @@
+let login = SecurityEvent     
+| where TimeGenerated > ago(1h)
+| where EventID == '4624'
+| project TargetLogonId, loginTime = TimeGenerated;
+let logout = SecurityEvent 
+| where TimeGenerated > ago(1h)
+| where EventID == '4634'
+| project TargetLogonId, logoutTime = TimeGenerated;
+login
+| join kind=leftouter logout on TargetLogonId
+| project loginTime, logoutTime
