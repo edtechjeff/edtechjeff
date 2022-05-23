@@ -1,0 +1,5 @@
+SigninLogs
+| extend UserPrincipalName_ = tolower(UserPrincipalName) | join (_GetWatchlist('ExtendedLeave')
+| where leave == 1 
+| project UserNames = tolower(UserName)
+) on $left.UserPrincipalName_ ==  $right.UserNames
