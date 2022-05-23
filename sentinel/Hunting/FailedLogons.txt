@@ -1,0 +1,5 @@
+SecurityEvent
+| where EventID == 4625
+| where LogonType in (2,10)
+| summarize count() by Account, bin(TimeGenerated,5m)
+| where count_ > 1
