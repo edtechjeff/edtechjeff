@@ -1,0 +1,96 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "crossComponentResources": [
+          "value::all"
+        ],
+        "parameters": [
+          {
+            "id": "9fd5fd14-4826-475a-bf1e-60ba9b1ac7e4",
+            "version": "KqlParameterItem/1.0",
+            "name": "Environment",
+            "type": 2,
+            "isRequired": true,
+            "query": "resources\r\n| where type == \"microsoft.hybridcompute/machines\"\r\n| mvexpand tags\r\n| extend tagKey = tostring(bag_keys(tags)[0])\r\n| extend tagValue = tostring(tags[tagKey])\r\n| distinct tagValue\r\n| project tagValue",
+            "crossComponentResources": [
+              "value::all"
+            ],
+            "value": "Production",
+            "typeSettings": {
+              "additionalResourceOptions": [],
+              "showDefault": false
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            },
+            "queryType": 1,
+            "resourceType": "microsoft.resourcegraph/resources"
+          },
+          {
+            "id": "4011550b-843d-4cd3-88b3-9ce5dd028c1d",
+            "version": "KqlParameterItem/1.0",
+            "name": "VirtualMachines",
+            "type": 2,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "query": "Resources\r\n| mvexpand tags\r\n| extend tagKey = tostring(bag_keys(tags)[0])\r\n| extend tagValue = tostring(tags[tagKey])\r\n| where type == \"microsoft.hybridcompute/machines\" and tagValue == \"{Environment:value}\"\r\n| project name",
+            "crossComponentResources": [
+              "value::all"
+            ],
+            "value": [
+              "value::all"
+            ],
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::all"
+              ],
+              "showDefault": false
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            },
+            "queryType": 1,
+            "resourceType": "microsoft.resourcegraph/resources"
+          }
+        ],
+        "style": "pills",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources"
+      },
+      "name": "parameters - 3"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SecurityEvent\r\n| where Computer in ({VirtualMachines})",
+        "size": 0,
+        "showAnalytics": true,
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "showRefreshButton": true,
+        "showExportToExcel": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "crossComponentResources": [
+          "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/resourcegroups/sentinel-production-rg/providers/microsoft.operationalinsights/workspaces/sentinel-production",
+          "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/resourceGroups/Sentinel-Production-RG/providers/Microsoft.OperationalInsights/workspaces/Sentinel-Production"
+        ]
+      },
+      "showPin": true,
+      "name": "query - 2"
+    }
+  ],
+  "fallbackResourceIds": [
+    "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/resourcegroups/sentinel-production-rg/providers/microsoft.operationalinsights/workspaces/sentinel-production"
+  ],
+  "fromTemplateId": "sentinel-UserWorkbook",
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
