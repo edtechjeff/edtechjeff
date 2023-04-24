@@ -1,1 +1,1 @@
-Used to store Analytic Rules
+Sentinel Detection Rules
