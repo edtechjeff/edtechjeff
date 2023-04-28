@@ -1,0 +1,307 @@
+{
+    "properties": {
+        "provisioningState": "Succeeded",
+        "createdTime": "2022-06-09T14:33:11.5445683Z",
+        "changedTime": "2022-08-04T15:47:58.0919098Z",
+        "state": "Enabled",
+        "version": "08585419788074103442",
+        "accessEndpoint": "https://prod-23.eastus.logic.azure.com:443/workflows/ec022bee27c148eebca532f35d03a14e",
+        "definition": {
+            "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+            "contentVersion": "1.0.0.0",
+            "parameters": {
+                "$connections": {
+                    "defaultValue": {},
+                    "type": "Object"
+                }
+            },
+            "triggers": {
+                "When_Azure_Sentinel_incident_creation_rule_was_triggered": {
+                    "type": "ApiConnectionWebhook",
+                    "inputs": {
+                        "body": {
+                            "callback_url": "@{listCallbackUrl()}"
+                        },
+                        "host": {
+                            "connection": {
+                                "name": "@parameters('$connections')['azuresentinel_1']['connectionId']"
+                            }
+                        },
+                        "path": "/incident-creation"
+                    }
+                }
+            },
+            "actions": {
+                "Entities_-_Get_IPs": {
+                    "runAfter": {},
+                    "type": "ApiConnection",
+                    "inputs": {
+                        "body": "@triggerBody()?['object']?['properties']?['relatedEntities']",
+                        "host": {
+                            "connection": {
+                                "name": "@parameters('$connections')['azuresentinel_2']['connectionId']"
+                            }
+                        },
+                        "method": "post",
+                        "path": "/entities/ip"
+                    }
+                },
+                "Filter_array": {
+                    "runAfter": {
+                        "Entities_-_Get_IPs": [
+                            "Succeeded"
+                        ]
+                    },
+                    "type": "Query",
+                    "inputs": {
+                        "from": "@body('Entities_-_Get_IPs')?['IPs']",
+                        "where": "@equals(item()?['Type'], 'ip')"
+                    }
+                },
+                "For_each": {
+                    "foreach": "@body('Filter_array')",
+                    "actions": {
+                        "Add_comment_to_incident_(V3)_2": {
+                            "runAfter": {
+                                "Parse_JSON": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "body": {
+                                    "incidentArmId": "@triggerBody()?['object']?['id']",
+                                    "message": "<p><strong>IP-api results for IP address in the incident:</strong></p>\n<p>IP: @{body('Parse_JSON')?['query']}<br>\nCountry: @{body('Parse_JSON')?['country']}<br>\nCity: @{body('Parse_JSON')?['city']}<br>\nISP: @{body('Parse_JSON')?['isp']}<br>\nOrganization: @{body('Parse_JSON')?['org']}<br>\nAS: @{body('Parse_JSON')?['as']}<br>\nState: @{body('Parse_JSON')?['region']}</p>\n<p>https://ip-api.com</p>"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['azuresentinel_3']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "path": "/Incidents/Comment"
+                            }
+                        },
+                        "HTTP": {
+                            "runAfter": {},
+                            "type": "Http",
+                            "inputs": {
+                                "method": "GET",
+                                "uri": "http://ip-api.com/json/@{items('For_each')?['Address']}"
+                            }
+                        },
+                        "Parse_JSON": {
+                            "runAfter": {
+                                "HTTP": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ParseJson",
+                            "inputs": {
+                                "content": "@body('HTTP')",
+                                "schema": {
+                                    "properties": {
+                                        "as": {
+                                            "type": "string"
+                                        },
+                                        "city": {
+                                            "type": "string"
+                                        },
+                                        "country": {
+                                            "type": "string"
+                                        },
+                                        "countryCode": {
+                                            "type": "string"
+                                        },
+                                        "isp": {
+                                            "type": "string"
+                                        },
+                                        "lat": {
+                                            "type": "number"
+                                        },
+                                        "lon": {
+                                            "type": "number"
+                                        },
+                                        "org": {
+                                            "type": "string"
+                                        },
+                                        "query": {
+                                            "type": "string"
+                                        },
+                                        "region": {
+                                            "type": "string"
+                                        },
+                                        "regionName": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "timezone": {
+                                            "type": "string"
+                                        },
+                                        "zip": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "runAfter": {
+                        "Filter_array": [
+                            "Succeeded"
+                        ]
+                    },
+                    "type": "Foreach"
+                }
+            },
+            "outputs": {}
+        },
+        "parameters": {
+            "$connections": {
+                "value": {
+                    "azuresentinel_1": {
+                        "connectionId": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/resourceGroups/Sentinel-Production-RG/providers/Microsoft.Web/connections/azuresentinel-1",
+                        "connectionName": "azuresentinel-1",
+                        "id": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/providers/Microsoft.Web/locations/eastus/managedApis/azuresentinel"
+                    },
+                    "azuresentinel_2": {
+                        "connectionId": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/resourceGroups/Sentinel-Production-RG/providers/Microsoft.Web/connections/azuresentinel-2",
+                        "connectionName": "azuresentinel-2",
+                        "id": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/providers/Microsoft.Web/locations/eastus/managedApis/azuresentinel"
+                    },
+                    "azuresentinel_3": {
+                        "connectionId": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/resourceGroups/Sentinel-Production-RG/providers/Microsoft.Web/connections/azuresentinel-3",
+                        "connectionName": "azuresentinel-3",
+                        "id": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/providers/Microsoft.Web/locations/eastus/managedApis/azuresentinel"
+                    }
+                }
+            }
+        },
+        "endpointsConfiguration": {
+            "workflow": {
+                "outgoingIpAddresses": [
+                    {
+                        "address": "13.92.98.111"
+                    },
+                    {
+                        "address": "40.121.91.41"
+                    },
+                    {
+                        "address": "40.114.82.191"
+                    },
+                    {
+                        "address": "23.101.139.153"
+                    },
+                    {
+                        "address": "23.100.29.190"
+                    },
+                    {
+                        "address": "23.101.136.201"
+                    },
+                    {
+                        "address": "104.45.153.81"
+                    },
+                    {
+                        "address": "23.101.132.208"
+                    },
+                    {
+                        "address": "52.226.216.197"
+                    },
+                    {
+                        "address": "52.226.216.187"
+                    },
+                    {
+                        "address": "40.76.151.25"
+                    },
+                    {
+                        "address": "40.76.148.50"
+                    },
+                    {
+                        "address": "20.84.29.29"
+                    },
+                    {
+                        "address": "20.84.29.18"
+                    },
+                    {
+                        "address": "40.76.174.83"
+                    },
+                    {
+                        "address": "40.76.174.39"
+                    }
+                ],
+                "accessEndpointIpAddresses": [
+                    {
+                        "address": "137.135.106.54"
+                    },
+                    {
+                        "address": "40.117.99.79"
+                    },
+                    {
+                        "address": "40.117.100.228"
+                    },
+                    {
+                        "address": "137.116.126.165"
+                    },
+                    {
+                        "address": "52.226.216.209"
+                    },
+                    {
+                        "address": "40.76.151.124"
+                    },
+                    {
+                        "address": "20.84.29.150"
+                    },
+                    {
+                        "address": "40.76.174.148"
+                    }
+                ]
+            },
+            "connector": {
+                "outgoingIpAddresses": [
+                    {
+                        "address": "40.71.249.139"
+                    },
+                    {
+                        "address": "40.71.249.205"
+                    },
+                    {
+                        "address": "40.114.40.132"
+                    },
+                    {
+                        "address": "40.71.11.80/28"
+                    },
+                    {
+                        "address": "40.71.15.160/27"
+                    },
+                    {
+                        "address": "52.188.157.160"
+                    },
+                    {
+                        "address": "20.88.153.176/28"
+                    },
+                    {
+                        "address": "20.88.153.192/27"
+                    },
+                    {
+                        "address": "52.151.221.184"
+                    },
+                    {
+                        "address": "52.151.221.119"
+                    }
+                ]
+            }
+        }
+    },
+    "id": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/resourceGroups/Sentinel-Production-RG/providers/Microsoft.Logic/workflows/Sentinel_IPapi_geolocation",
+    "name": "Sentinel_IPapi_geolocation",
+    "type": "Microsoft.Logic/workflows",
+    "location": "eastus",
+    "tags": {
+        "LogicAppsCategory": "security",
+        "Environment": "Production",
+        "Owner": "Jeff Downs"
+    }
+}
