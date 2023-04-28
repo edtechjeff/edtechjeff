@@ -1,0 +1,257 @@
+{
+    "properties": {
+        "provisioningState": "Succeeded",
+        "createdTime": "2022-06-09T16:33:28.3381858Z",
+        "changedTime": "2023-03-13T10:21:54.4212879Z",
+        "state": "Enabled",
+        "version": "08585229039710947144",
+        "accessEndpoint": "https://prod-86.eastus.logic.azure.com:443/workflows/961015a1a0d249a6934ec3265bc5a4d4",
+        "definition": {
+            "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+            "contentVersion": "1.0.0.0",
+            "parameters": {
+                "$connections": {
+                    "defaultValue": {},
+                    "type": "Object"
+                },
+                "EmailAddress": {
+                    "defaultValue": "jeff.downs@microsoft.com",
+                    "type": "String"
+                },
+                "ResourceGroup": {
+                    "defaultValue": " sentinel-production-rg",
+                    "type": "String"
+                },
+                "ResourceName": {
+                    "defaultValue": "Sentinel-Production",
+                    "type": "String"
+                }
+            },
+            "triggers": {
+                "Recurrence": {
+                    "recurrence": {
+                        "frequency": "Day",
+                        "interval": 1,
+                        "schedule": {
+                            "hours": [
+                                "5",
+                                "15"
+                            ],
+                            "minutes": [
+                                0
+                            ]
+                        },
+                        "timeZone": "Eastern Standard Time"
+                    },
+                    "evaluatedRecurrence": {
+                        "frequency": "Day",
+                        "interval": 1,
+                        "schedule": {
+                            "hours": [
+                                "5",
+                                "15"
+                            ],
+                            "minutes": [
+                                0
+                            ]
+                        },
+                        "timeZone": "Eastern Standard Time"
+                    },
+                    "type": "Recurrence"
+                }
+            },
+            "actions": {
+                "Run_query_and_visualize_results": {
+                    "runAfter": {},
+                    "type": "ApiConnection",
+                    "inputs": {
+                        "body": "SecurityIncident\n| where TimeGenerated > ago(1d) \n| where Status == \"New\"\n| project TimeGenerated, Title, Description, Severity, IncidentUrl",
+                        "host": {
+                            "connection": {
+                                "name": "@parameters('$connections')['azuremonitorlogs']['connectionId']"
+                            }
+                        },
+                        "method": "post",
+                        "path": "/visualizeQuery",
+                        "queries": {
+                            "resourcegroups": "@parameters('ResourceGroup')",
+                            "resourcename": "@parameters('ResourceName')",
+                            "resourcetype": "Log Analytics Workspace",
+                            "subscriptions": "f2f008f0-6459-463c-86b1-44e934db7dff",
+                            "timerange": "Set in query",
+                            "visType": "Html Table"
+                        }
+                    }
+                },
+                "Send_an_email_(V2)": {
+                    "runAfter": {
+                        "Run_query_and_visualize_results": [
+                            "Succeeded"
+                        ]
+                    },
+                    "type": "ApiConnection",
+                    "inputs": {
+                        "body": {
+                            "Body": "<p><span style=\"font-size: 18px\"><strong>Here is the list of Incidents that were created overnight:<br>\n<br>\n</strong></span><span style=\"font-size: 18px\"><strong>@{base64ToString(body('Run_query_and_visualize_results')?['attachmentContent'])}</strong></span><span style=\"font-size: 18px\"><strong><br>\n</strong></span><br>\n</p>",
+                            "Subject": "My Soc Incidents Created Overnight",
+                            "To": "@parameters('EmailAddress')"
+                        },
+                        "host": {
+                            "connection": {
+                                "name": "@parameters('$connections')['office365_2']['connectionId']"
+                            }
+                        },
+                        "method": "post",
+                        "path": "/v2/Mail"
+                    }
+                }
+            },
+            "outputs": {}
+        },
+        "parameters": {
+            "$connections": {
+                "value": {
+                    "azuremonitorlogs": {
+                        "connectionId": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/resourceGroups/Sentinel-Production-RG/providers/Microsoft.Web/connections/azuremonitorlogs",
+                        "connectionName": "azuremonitorlogs",
+                        "id": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/providers/Microsoft.Web/locations/eastus/managedApis/azuremonitorlogs"
+                    },
+                    "office365_2": {
+                        "connectionId": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/resourceGroups/Sentinel-Production-RG/providers/Microsoft.Web/connections/office365-3",
+                        "connectionName": "office365-3",
+                        "id": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/providers/Microsoft.Web/locations/eastus/managedApis/office365"
+                    }
+                }
+            }
+        },
+        "endpointsConfiguration": {
+            "workflow": {
+                "outgoingIpAddresses": [
+                    {
+                        "address": "13.92.98.111"
+                    },
+                    {
+                        "address": "40.121.91.41"
+                    },
+                    {
+                        "address": "40.114.82.191"
+                    },
+                    {
+                        "address": "23.101.139.153"
+                    },
+                    {
+                        "address": "23.100.29.190"
+                    },
+                    {
+                        "address": "23.101.136.201"
+                    },
+                    {
+                        "address": "104.45.153.81"
+                    },
+                    {
+                        "address": "23.101.132.208"
+                    },
+                    {
+                        "address": "52.226.216.197"
+                    },
+                    {
+                        "address": "52.226.216.187"
+                    },
+                    {
+                        "address": "40.76.151.25"
+                    },
+                    {
+                        "address": "40.76.148.50"
+                    },
+                    {
+                        "address": "20.84.29.29"
+                    },
+                    {
+                        "address": "20.84.29.18"
+                    },
+                    {
+                        "address": "40.76.174.83"
+                    },
+                    {
+                        "address": "40.76.174.39"
+                    }
+                ],
+                "accessEndpointIpAddresses": [
+                    {
+                        "address": "137.135.106.54"
+                    },
+                    {
+                        "address": "40.117.99.79"
+                    },
+                    {
+                        "address": "40.117.100.228"
+                    },
+                    {
+                        "address": "137.116.126.165"
+                    },
+                    {
+                        "address": "52.226.216.209"
+                    },
+                    {
+                        "address": "40.76.151.124"
+                    },
+                    {
+                        "address": "20.84.29.150"
+                    },
+                    {
+                        "address": "40.76.174.148"
+                    }
+                ]
+            },
+            "connector": {
+                "outgoingIpAddresses": [
+                    {
+                        "address": "40.71.249.139"
+                    },
+                    {
+                        "address": "40.71.249.205"
+                    },
+                    {
+                        "address": "40.114.40.132"
+                    },
+                    {
+                        "address": "40.71.11.80/28"
+                    },
+                    {
+                        "address": "40.71.15.160/27"
+                    },
+                    {
+                        "address": "52.188.157.160"
+                    },
+                    {
+                        "address": "20.88.153.176/28"
+                    },
+                    {
+                        "address": "20.88.153.192/27"
+                    },
+                    {
+                        "address": "52.151.221.184"
+                    },
+                    {
+                        "address": "52.151.221.119"
+                    }
+                ]
+            }
+        }
+    },
+    "id": "/subscriptions/f2f008f0-6459-463c-86b1-44e934db7dff/resourceGroups/Sentinel-Production-RG/providers/Microsoft.Logic/workflows/SendDailyIncidentNotificationEmail",
+    "name": "SendDailyIncidentNotificationEmail",
+    "type": "Microsoft.Logic/workflows",
+    "location": "eastus",
+    "tags": {
+        "Environment": "Production",
+        "Owner": "Jeff Downs",
+        "hidden-SentinelTemplateName": "SendDailyIncidentNotificationEmail",
+        "hidden-SentinelTemplateVersion": "1.0"
+    },
+    "identity": {
+        "type": "SystemAssigned",
+        "principalId": "65ccba6d-398f-4398-945e-89a85d002a1c",
+        "tenantId": "8e20d9db-20c8-46a4-81a1-49bb17161039"
+    }
+}
