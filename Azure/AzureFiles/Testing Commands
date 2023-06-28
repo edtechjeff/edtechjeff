@@ -1,0 +1,8 @@
+#Test for DNS Name Resolution
+Resolve-dnsname privatelink.file.core.windows.net
+
+#Test to see if you can gain access to the share
+test-netconnection -computername privatelink.file.core.windows.net -commonTCPport sMB
+
+#Test to see if you can gain access to the share via IP
+test-netconnection -computername 10.0.1.4 -commonTCPport sMB
