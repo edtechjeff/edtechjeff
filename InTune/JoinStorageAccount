@@ -1,0 +1,18 @@
+#Sets the execution policy for current user
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+#Login to Azure
+Connect-AzAccount
+
+#Set Variables
+$SubscriptionId = "SUB_ID"
+$ResourceGroupName = "RG_NAME"
+$StorageAccountName = "Storage_Account_Name"
+$LocalDomainName = "Local_AD_Domain_Name"
+$OrgName = "_Optional_Placement_Org Location"
+
+#Select subscription
+Select-AzSubscription -SubscriptionId $SubscriptionId
+#Import modules 
+Import-Module AzFilesHybrid
+#Command to join to on-prem AD
+Join-AzStorageAccountForAuth -ResourceGroupName $ResourceGroupName -Name $StorageAccountName -Domain $LocalDomainName -DomainAccountType ComputerAccount -OrganizationalUnitName $OrgName
