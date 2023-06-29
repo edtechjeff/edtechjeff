@@ -1,24 +1,23 @@
-#Optional 
-#Download the AzFilesHybrid Module
-#https://github.com/azure-samples/azure-files-samples/releases
+# Download the AzFilesHybrid Module
+# https://github.com/azure-samples/azure-files-samples/releases
 #Change directory to the extracted directory and run the following command
 .\CopyToPSPath.ps1
 
-#Sets the execution policy for current user
+# Sets the execution policy for current user
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
-#Login to Azure
+# Login to Azure
 Connect-AzAccount
 
-#Set Variables
+# Set Variables
 $SubscriptionId = "SUB_ID"
 $ResourceGroupName = "RG_NAME"
 $StorageAccountName = "Storage_Account_Name"
 $LocalDomainName = "Local_AD_Domain_Name"
 $OrgName = "_Optional_Placement_Org Location"
 
-#Select subscription
+# Select subscription
 Select-AzSubscription -SubscriptionId $SubscriptionId
-#Import modules 
+# Import modules 
 Import-Module AzFilesHybrid
-#Command to join to on-prem AD
+# Command to join to on-prem AD
 Join-AzStorageAccountForAuth -ResourceGroupName $ResourceGroupName -Name $StorageAccountName -Domain $LocalDomainName -DomainAccountType ComputerAccount -OrganizationalUnitName $OrgName
