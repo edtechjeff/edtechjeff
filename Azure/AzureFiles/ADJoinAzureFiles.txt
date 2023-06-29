@@ -1,3 +1,10 @@
+#Optional 
+Download the AzFilesHybrid manually 
+.\CopyToPSPath.ps1
+Import-Module -Name AzFilesHybrid
+
+
+
 #Sets the execution policy for current user
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 #Login to Azure
