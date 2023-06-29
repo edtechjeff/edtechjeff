@@ -1,9 +1,8 @@
 #Optional 
-Download the AzFilesHybrid manually 
+#Download the AzFilesHybrid Module
+#https://github.com/azure-samples/azure-files-samples/releases
+#Change directory to the extracted directory and run the following command
 .\CopyToPSPath.ps1
-Import-Module -Name AzFilesHybrid
-
-
 
 #Sets the execution policy for current user
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
