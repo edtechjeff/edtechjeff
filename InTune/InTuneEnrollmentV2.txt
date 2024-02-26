@@ -1,3 +1,7 @@
-Install-Script -name Get-WindowsAutopilotInfo -Force
-Set-ExecutionPolicy Unrestricted
-Get-WindowsAutoPilotInfo -Online
+powershell Install-Script -name Get-WindowsAutopilotInfo -Force
+powershell Set-ExecutionPolicy Unrestricted
+powershell Get-WindowsAutoPilotInfo -Online
+
+powershell Set-ExecutionPolicy Unrestricted
+ECHO Y | powershell Install-Script -name Get-WindowsAutopilotInfo -Force
+ECHO Y | powershell Get-WindowsAutoPilotInfo -Online
