@@ -16,8 +16,8 @@
 
 <ServerList>
     <HostEntry>
-      <HostName>VPN.SEPRO.COM</HostName>
-      <HostAddress>carmel-jmmznpngzm.dynamic-m.com</HostAddress>
+      <HostName>ChanageTO_DisplayName</HostName>
+      <HostAddress>ChangeTO_VPNHOSTADDRESS</HostAddress>
      <SamlAuthentication>
       <SamlIdentityProvider>login.microsoftonline.com</SamlIdentityProvider>
      </SamlAuthentication>
@@ -26,7 +26,7 @@
 
 <AuthTimeout>120</AuthTimeout>
 
-<ServerCertificateDomainMatch>.dynamic-m.com</ServerCertificateDomainMatch>
+<ServerCertificateDomainMatch>.CHANGETODOMAINNAME</ServerCertificateDomainMatch>
 
 <ServerCertificates>
   <RootCertMatch>login.microsoftonline.com</RootCertMatch> 
