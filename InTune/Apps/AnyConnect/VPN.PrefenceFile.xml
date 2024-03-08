@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnyConnectProfile xmlns="http://schemas.xmlsoap.org/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.xmlsoap.org/encoding/ AnyConnectProfile.xsd">
+
+<ClientInitialization>
+   <SuspendHibernate>False</SuspendHibernate>
+   <SuspendOnConnectedStandby>false</SuspendOnConnectedStandby>
+   <AutoReconnect>False</AutoReconnect>
+   <Retries>1</Retries>
+   <AuthenticationTimeout>30</AuthenticationTimeout>
+   <UserMessages>
+      <Msg> 
+         <Type>None</Type>
+      </Msg>
+   </UserMessages>
+</ClientInitialization>
+
+<ServerList>
+    <HostEntry>
+      <HostName>VPN.SEPRO.COM</HostName>
+      <HostAddress>carmel-jmmznpngzm.dynamic-m.com</HostAddress>
+     <SamlAuthentication>
+      <SamlIdentityProvider>login.microsoftonline.com</SamlIdentityProvider>
+     </SamlAuthentication>
+    </HostEntry>
+</ServerList>
+
+<AuthTimeout>120</AuthTimeout>
+
+<ServerCertificateDomainMatch>.dynamic-m.com</ServerCertificateDomainMatch>
+
+<ServerCertificates>
+  <RootCertMatch>login.microsoftonline.com</RootCertMatch> 
+</ServerCertificates>
+
+<Authentication>
+  <ClientCertificates>
+    <UseClientCertificate>true</UseClientCertificate>
+  </ClientCertificates>
+</Authentication>
+
+<AutoUpdate UserControllable="false">true</AutoUpdate>
+
+<Module>
+  <Name>fips</Name>
+  <FIPSMode>true</FIPSMode>
+  <TLSToken>azure-sha2-tls</TLSToken> 
+</Module>
+
+<DisabledModules>
+  <Module>websecurity</Module>
+  <Module>telemetry</Module>
+  <Module>nam</Module>
+</DisabledModules>
+  
+</AnyConnectProfile>
