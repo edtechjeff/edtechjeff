@@ -1,0 +1,15 @@
+Connect-ExchangeOnline -UserPrincipalName esiadmin@wfyi.org
+
+
+Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
+
+Set-UnifiedGroup -Identity "hr_payrollshare@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "DepartmentFinancials@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
+
+Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
+

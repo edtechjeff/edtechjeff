@@ -1,0 +1,18 @@
+# Install the Microsoft Graph PowerShell SDK if not already installed
+if (-not (Get-Module -ListAvailable -Name Microsoft.Graph)) {
+    Install-Module Microsoft.Graph -Scope CurrentUser
+}
+
+# Connect to Microsoft Graph with the necessary permissions
+# Connect-MgGraph -Scopes "User.ReadWrite.All"
+Connect-MgGraph -Scopes "Sites.readwrite.all"
+
+# Define the user ID or UserPrincipalName and the new 'About Me' text
+$userId = "erikad@edtechjeff.com"  # Replace with the actual user ID or UserPrincipalName
+$aboutMeText = "This is the new 'About Me' information for the user."
+
+# Update the user's 'About Me' information
+Update-MgUser -UserId $userId -AboutMe $aboutMeText
+
+# Disconnect from Microsoft Graph
+Disconnect-MgGraph

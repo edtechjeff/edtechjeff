@@ -1,0 +1,31 @@
+# Install the Microsoft Graph PowerShell SDK if not already installed
+if (-not (Get-Module -ListAvailable -Name Microsoft.Graph)) {
+    Install-Module Microsoft.Graph -Scope CurrentUser
+}
+
+# Connect to Microsoft Graph with the necessary permissions
+# Connect-MgGraph -Scopes "User.ReadWrite.All"
+Connect-MgGraph -Scopes "Sites.readwrite.all"
+
+# Path to the CSV file
+$csvPath = "C:\temp\apps\scripts\list\users.csv"  # Replace with the actual path to your CSV file
+
+# Read the CSV file
+$users = Import-Csv -Path $csvPath
+
+# Iterate through each user in the CSV file and update their 'About Me' information
+foreach ($user in $users) {
+    $userId = $user.UserPrincipalName
+    $aboutMeText = $user.AboutMe
+
+    try {
+        # Update the user's 'About Me' information
+        Update-MgUser -UserId $userId -AboutMe $aboutMeText
+        Write-Host "Successfully updated 'About Me' for $userId"
+    } catch {
+        Write-Host "Failed to update 'About Me' for $userId $_"
+    }
+}
+
+# Disconnect from Microsoft Graph
+Disconnect-MgGraph
