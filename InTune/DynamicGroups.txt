@@ -1,0 +1,4 @@
+(device.devicePhysicalIDs -any (_ -contains "SystemSKUNumber:MODEL123"))
+
+(device.devicePhysicalIDs -any (_ -contains "PurchaseOrderID:PO12345"))
+
