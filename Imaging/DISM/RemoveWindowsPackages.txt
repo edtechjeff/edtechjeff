@@ -1,0 +1,36 @@
+# Script to Remove Packages
+
+# Mount the image
+$mountPath = "E:\Images\Mount"
+
+# List all provisioned appx packages
+$packages = dism /image:$mountPath /Get-ProvisionedAppxPackages | Select-String "PackageName : " | ForEach-Object { $_.Line.Split(':')[1].Trim() }
+
+# Define the wildcard patterns
+$patterns = @(
+	"Microsoft.Bing*", 
+	"Microsoft.MicrosoftOfficeHub*",
+	"Microsoft.Office.OneNote*",
+	"Microsoft.SkypeApp*",
+	"Microsoft.Wallet*",
+	"Microsoft.MicrosoftSolitaireCollection*",
+	"Microsoft.People*",
+	"Microsoft.WindowsMaps*",
+	"Microsoft.YourPhone*",
+	"Microsoft.Zune*",
+	"Microsoft.Xbox*"
+)
+
+# Initialize an empty array to store packages to remove
+$packagesToRemove = @()
+
+# Filter packages that match any of the patterns
+foreach ($pattern in $patterns) {
+    $matchingPackages = $packages | Where-Object { $_ -like $pattern }
+    $packagesToRemove += $matchingPackages
+}
+
+# Remove each package
+foreach ($package in $packagesToRemove) {
+    dism /image:$mountPath /Remove-ProvisionedAppxPackage /PackageName:$package
+}
