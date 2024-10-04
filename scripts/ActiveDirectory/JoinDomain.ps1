@@ -1,0 +1,1 @@
+Powershell.exe -ExecutionPolicy Bypass -Command "Add-Computer -DomainName 'Domain_Name' -OUPath 'OU=Computers,DC=Domain,DC=Name'  -Credential (New-Object System.Management.Automation.PSCredential('JoinAccount', (ConvertTo-SecureString 'PassWord' -AsPlainText -Force))) -Restart"
