@@ -18,7 +18,7 @@ $UserDetails = $Users | ForEach-Object {
 }
 
 # Export the result to CSV file (optional)
-$UserDetails | Export-Csv -Path "C:\temp2\Pike\EntraID_Users.csv" -NoTypeInformation
+$UserDetails | Export-Csv -Path "C:\temp2\EntraID_Users.csv" -NoTypeInformation
 
 # Display the result in the console
 $UserDetails
