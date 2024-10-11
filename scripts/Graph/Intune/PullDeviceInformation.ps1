@@ -34,5 +34,7 @@ foreach ($device in $devices) {
 # Export the device information to a CSV file
 $deviceList | Export-Csv -Path "C:\temp2\EntraID_Devices.csv" -NoTypeInformation
 
+$deviceList
+
 # Disconnect from Microsoft Graph
 Disconnect-MgGraph
