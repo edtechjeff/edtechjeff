@@ -1,0 +1,8 @@
+# Make Folder structure to resemble the following
+C:\ISO_Boot
+└── sources
+    └── boot.wim
+
+# You will also need to have install media and copy some of the folders and sub folders in order for this to work
+
+oscdimg -m -o -u2 -udfver102 -bootdata:2#p0,e,bC:\ISO_Boot\boot\etfsboot.com#pEF,e,bC:\ISO_Boot\efi\microsoft\boot\efisys.bin C:\ISO_Boot C:\CustomBootISO.iso

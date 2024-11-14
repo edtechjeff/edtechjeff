@@ -16,12 +16,12 @@ https://cloudinfra.net
 #>
 try {
     # Install required modules
-    Install-Module -Name Microsoft.Graph.DeviceManagement -Force -ErrorAction Stop
-    Install-Module -Name Microsoft.Graph.DeviceManagement.Actions -Force -ErrorAction Stop
+    # Install-Module -Name Microsoft.Graph.DeviceManagement -Force -ErrorAction Stop
+    # Install-Module -Name Microsoft.Graph.DeviceManagement.Actions -Force -ErrorAction Stop
 
     # Import required modules
-    Import-Module -Name Microsoft.Graph.DeviceManagement -ErrorAction Stop
-    Import-Module -Name Microsoft.Graph.DeviceManagement.Actions -ErrorAction Stop
+    # Import-Module -Name Microsoft.Graph.DeviceManagement -ErrorAction Stop
+    # Import-Module -Name Microsoft.Graph.DeviceManagement.Actions -ErrorAction Stop
 
     # Connect to Microsoft Graph
     Connect-MgGraph -scope DeviceManagementManagedDevices.PrivilegedOperations.All, DeviceManagementManagedDevices.ReadWrite.All, DeviceManagementManagedDevices.Read.All -ErrorAction Stop

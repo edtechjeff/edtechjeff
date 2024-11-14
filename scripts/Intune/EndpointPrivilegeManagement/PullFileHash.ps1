@@ -1,0 +1,1 @@
+Get-FileHash pathToFile

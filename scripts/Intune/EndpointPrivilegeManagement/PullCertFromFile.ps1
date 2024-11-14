@@ -1,0 +1,1 @@
+Get-AuthenticodeSignature pathToFile | Select-Object -ExpandProperty SignerCertificate | Export-Certificate -Type CERT -FilePath outputPath
