@@ -1,0 +1,1 @@
+Set-DistributionGroup -Identity "All_Conf_Rooms_1st_Floor" -PrimarySMTPAddress "All_Conf_Rooms@edtechjeff.com"

@@ -1,0 +1,1 @@
+Remove-DistributionGroupMember -Identity "allconferencerooms@edtechjeff.com" -Member EdtechjeffconferenceRoom@edtechjeff.com

@@ -1,15 +1,13 @@
-Connect-ExchangeOnline -UserPrincipalName esiadmin@wfyi.org
+Connect-ExchangeOnline -UserPrincipalName useradmin@edtechjeff.com
 
 
-Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
-
-Set-UnifiedGroup -Identity "hr_payrollshare@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
-Set-UnifiedGroup -Identity "DepartmentFinancials@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
-Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
-Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
-Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
-Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
-
-Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
-Set-UnifiedGroup -Identity "accounting@wfyi.org" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@edtechjeff.com" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "hr_payrollshare@edtechjeff.com" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "DepartmentFinancials@edtechjeff.com" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@edtechjeff.com" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@edtechjeff.com" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@edtechjeff.com" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@edtechjeff.com" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@edtechjeff.com" -HiddenFromExchangeClientsEnabled:$false
+Set-UnifiedGroup -Identity "accounting@edtechjeff.com" -HiddenFromExchangeClientsEnabled:$false
 
