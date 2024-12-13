@@ -1,0 +1,137 @@
+# Please note this is something I am working on and will be updating. The goal is to use Linux to PXE boot and to image from for Windows. You ask Why? Why not try something different
+
+
+
+#Commands
+#Install 
+#Install Pre-req's
+    sudo apt update
+    sudo apt upgrade
+    sudo apt install tftpd-hpa syslinux pxelinux isc-dhcp-server nfs-kernel-server
+
+
+
+To set up a PXE boot environment on Ubuntu Server to install Windows 11 with your custom boot.wim, follow these steps:
+
+1. Install Required Services
+    Install a TFTP server and DHCP server:
+                sudo apt update
+                sudo apt install tftpd-hpa isc-dhcp-server
+2. Configure TFTP
+Edit the TFTP configuration file 
+        sudo nano /etc/default/tftpd-hpa
+                TFTP_USERNAME="tftp"
+                TFTP_DIRECTORY="/srv/tftp"
+                TFTP_ADDRESS="0.0.0.0:69"
+                TFTP_OPTIONS="--secure"
+
+3. Create the TFTP root directory:
+                sudo mkdir -p /srv/tftp
+                sudo chmod -R 777 /srv/tftp
+4. Configure DHCP
+Edit the DHCP configuration file /etc/dhcp/dhcpd.conf:
+                subnet 192.168.1.0 netmask 255.255.255.0 {
+                    range 192.168.1.100 192.168.1.200;
+                    option routers 192.168.1.1;
+                    option broadcast-address 192.168.1.255;
+                    next-server 192.168.1.2; # IP of your Ubuntu Server
+                    filename "pxelinux.0";
+                }
+
+5. Optional. If you have Multiple network interfaces you can bind one to dhcp
+        # File to Edit  
+                sudo nano /etc/default/isc-dhcp-server
+        # Example
+            	INTERFACESv4="eth0"
+
+6. Allow DHCP through firewall
+                sudo ufw allow 68/udp 
+                sudo ufw reload
+7. Start and enable the DHCP service and check status:
+                sudo systemctl restart isc-dhcp-server
+                sudo systemctl enable isc-dhcp-server
+8. Check DHCP Status
+    sudo systemctl status isc-dhcp-server.service
+9. Install and Configure Syslinux
+    Install Syslinux to obtain pxelinux.0:
+                sudo apt install syslinux-common
+                sudo cp /usr/lib/PXELINUX/pxelinux.0 /srv/tftp
+10. Create the pxelinux.cfg directory:
+                sudo mkdir -p /srv/tftp/pxelinux.cfg
+11. Create a default configuration file /srv/tftp/pxelinux.cfg/default:
+                sudo nano /srv/tftp/pxelinux.cfg/default
+        Copy code
+                DEFAULT windows
+                LABEL windows
+                    KERNEL wimboot
+                    INITRD bootmgr wimboot boot.wim
+12. Copy Boot Files
+    Download wimboot:
+                wget https://github.com/ipxe/wimboot/releases/latest/download/wimboot -P /srv/tftp
+13. Copy your custom boot.wim to /srv/tftp.
+14. Start the TFTP Server
+                sudo systemctl restart tftpd-hpa
+                sudo systemctl enable tftpd-hpa
+
+
+15. Getting SMB Share for custom install.wim file
+# The install.wim file contains the Windows image used for installation. To use it in a PXE environment, you would typically deploy it via a network share, or embed it in your custom WinPE environment if using a specific process.
+# Install Samba:
+                sudo apt install samba
+16. Edit the Samba configuration file /etc/samba/smb.conf to add a shared folder:
+                [installshare]
+                path = /srv/installshare
+                read only = no
+                browsable = yes
+                guest ok = yes
+17. Create the shared folder:
+                sudo mkdir -p /srv/installshare
+                sudo chmod -R 777 /srv/installshare
+18. Restart Samba:
+                sudo systemctl restart smbd
+19. Copy the install.wim File to the Network Share:
+                sudo cp /path/to/install.wim /srv/installshare/
+###################################################################################################################################################################
+Modify winpeshl.ini or Use DISM in WinPE:
+
+You may need to modify your WinPE boot setup to pull the install.wim over the network:
+Modify winpeshl.ini to run a script that mounts the install.wim from the share.
+Use DISM to apply the image from \\<server-ip>\installshare\install.wim.
+2. Embed in the PXE Boot Workflow
+If you want to automate the process:
+
+You can modify startnet.cmd in your boot.wim to mount the install.wim from a known location (network share or local storage).
+3. Place on a USB Drive
+If network bandwidth is a concern, use a USB drive:
+
+Plug the USB into the PXE client.
+Ensure your startnet.cmd or other automation points to the install.wim on the USB drive.
+
+###################################################################################################################################################################
+
+# Setup SMB share for password access
+1. Edit SMB Config /etc/samba/smb.conf
+                    [installshare]
+                    path = /srv/installshare
+                    read only = no
+                    browsable = yes
+                    valid users = username
+2. Create a Samba user:
+                    sudo smbpasswd -a username
+
+3. Restart the Samba Service:
+                    sudo systemctl restart smbd
+4. Verify the Share
+5. Check the share by running:
+                    smbclient -L localhost
+    This will list all configured shares.
+
+
+
+
+
+
+
+
+
+

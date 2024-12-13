@@ -1,0 +1,84 @@
+######################################################################################
+# Used to Identify Network interfaces
+        nmcli d
+# Create Netplan for static ehternet
+        sudo nano /etc/netplan/01-netcfg.yaml
+# Example YAML for ehternet
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eno1:
+      dhcp4: no
+      addresses:
+        - 192.168.1.120/24
+      routes:
+        - to: default
+          via: 192.168.1.1
+      nameservers:
+        addresses: [8.8.8.8, 8.8.4.4]
+
+# Secure  Config file
+        sudo chmod 600 /etc/netplan/01-netcfg.yaml
+# Apply Net Plan
+        sudo netplan apply
+# Verify IP 
+        ip a
+######################################################################################
+# Show connections
+        nmcli connection show
+# Show active connections 
+        nmcli connection show --active
+# Show details about connections
+        nmcli connection show "Wired connection 1"
+######################################################################################
+# Disable and Enable WIFI
+        nmcli radio wifi off
+        nmcli radio wifi on
+######################################################################################
+# Setup DHCP server
+    sudo apt install isc-dhcp-server
+# Expands to sudo mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.backup
+    sudo mv /etc/dhcp/dhcpd.conf{,.backup}
+# Configure DHCP
+    	sudo nano /etc/dhcp/dhcpd.conf
+                # a simple /etc/dhcp/dhcpd.conf
+                    default-lease-time 600;
+                    max-lease-time 7200;
+                    authoritative;
+                    
+                    subnet 192.168.1.0 netmask 255.255.255.0 {
+                    range 192.168.1.100 192.168.1.200;
+                    option routers 192.168.1.254;
+                    option domain-name-servers 192.168.1.1, 192.168.1.2;
+                    #option domain-name "mydomain.example";
+                    }
+# Bind DHCP to particular interfaces
+    # File to Edit  
+        sudo nano /etc/default/isc-dhcp-server
+    # Example
+            	INTERFACESv4="eth0"
+# Restart DHCP
+    sudo systemctl restart isc-dhcp-server.service
+# enable dhcp service through firewall
+    sudo ufw allow 68/udp 
+    sudo ufw reload
+# check DHCP Status
+    sudo systemctl status isc-dhcp-server.service
+# Check if config is valid
+    sudo dhcpd -t -cf /etc/dhcp/dhcpd.conf
+#########################################################################################
+# SSH Status
+    sudo systemctl status ssh
+# Allow SSH thru firewall
+    sudo ufw allow ssh
+    sudo ufw enable
+# Another Check Service Status
+    service ssh status
+##########################################################################################
+# Show IP Route Tables
+ip route show table 100
+ip route show table 200
+ip rule show
+

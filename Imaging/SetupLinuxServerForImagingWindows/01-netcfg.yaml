@@ -1,0 +1,29 @@
+#Used if you have 2 adapters 
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eno1:
+      dhcp4: true
+      addresses:
+        - 192.168.2.120/24
+      routes:
+        - to: 0.0.0.0/0
+          via: 192.168.2.1
+          table: 100
+      nameservers:
+        addresses: [8.8.8.8, 8.8.4.4]
+  wifis:
+    wlp1s0:
+      dhcp4: false
+      addresses:
+        - 192.168.1.230/24
+      routes:
+        - to: 0.0.0.0/0
+          via: 192.168.1.1
+          table: 200
+      nameservers:
+        addresses: [8.8.8.8, 8.8.4.4]
+      access-points:
+        YOURSSID:
+          password: YOURWIFIPASSWORD
