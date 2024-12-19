@@ -7,8 +7,7 @@
 #Install Pre-req's
     sudo apt update
     sudo apt upgrade
-    sudo apt install tftpd-hpa syslinux pxelinux isc-dhcp-server nfs-kernel-server
-
+    
 
 
 To set up a PXE boot environment on Ubuntu Server to install Windows 11 with your custom boot.wim, follow these steps:
@@ -16,7 +15,8 @@ To set up a PXE boot environment on Ubuntu Server to install Windows 11 with you
 1. Install Required Services
     Install a TFTP server and DHCP server:
                 sudo apt update
-                sudo apt install tftpd-hpa isc-dhcp-server
+                sudo apt install tftpd-hpa syslinux pxelinux isc-dhcp-server nfs-kernel-server
+
 2. Configure TFTP
 Edit the TFTP configuration file 
         sudo nano /etc/default/tftpd-hpa
@@ -29,7 +29,8 @@ Edit the TFTP configuration file
                 sudo mkdir -p /srv/tftp
                 sudo chmod -R 777 /srv/tftp
 4. Configure DHCP
-Edit the DHCP configuration file /etc/dhcp/dhcpd.conf:
+# Edit the DHCP configuration file /etc/dhcp/dhcpd.conf:
+    sudo nano /etc/dhcp/dhcpd.conf
                 subnet 192.168.1.0 netmask 255.255.255.0 {
                     range 192.168.1.100 192.168.1.200;
                     option routers 192.168.1.1;

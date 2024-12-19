@@ -1,3 +1,7 @@
+# Create config file
+  sudo nano /etc/netplan/01-netcfg.yaml
+
+
 #Used if you have 2 adapters 
 network:
   version: 2
@@ -6,7 +10,7 @@ network:
     eno1:
       dhcp4: true
       addresses:
-        - 192.168.2.120/24
+        - 192.168.2.230/24
       routes:
         - to: 0.0.0.0/0
           via: 192.168.2.1
@@ -27,3 +31,6 @@ network:
       access-points:
         YOURSSID:
           password: YOURWIFIPASSWORD
+
+# Apply Plan
+  sudo netplan apply

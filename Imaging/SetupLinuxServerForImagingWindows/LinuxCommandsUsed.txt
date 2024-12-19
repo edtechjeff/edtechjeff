@@ -67,7 +67,15 @@ network:
 # check DHCP Status
     sudo systemctl status isc-dhcp-server.service
 # Check if config is valid
-    sudo dhcpd -t -cf /etc/dhcp/dhcpd.conf
+   
+# check status of dnsmasq
+    sudo systemctl status dnsmasq.service
+# See what service might be using a port or protocol
+    sudo netstat -tuln | grep :53
+# Search for file
+    sudo find -name "query"
+
+
 #########################################################################################
 # SSH Status
     sudo systemctl status ssh
