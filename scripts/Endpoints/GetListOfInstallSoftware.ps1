@@ -11,6 +11,3 @@ $installedSoftware = foreach ($path in $registryPaths) {
 
 # Display the results
 $installedSoftware | Where-Object { $_.DisplayName -ne $null } | Sort-Object DisplayName
-
-
-# Test
