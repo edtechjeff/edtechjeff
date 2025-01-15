@@ -2,7 +2,7 @@
 
 THIS IS A **UNOFFICAL** GUIDE USE AT YOUR OWN RISK
 
-I did copy and reuse this content from another contributor because it was spot on. https://github.com/darossi87/intune/tree/Cisco-Secure-Client-With-Umbrella-MacOS. I give them 100% credit for this and I will tell you it works great. 
+*I did copy and reuse this content from another contributor because it was spot on. https://github.com/darossi87/intune/tree/Cisco-Secure-Client-With-Umbrella-MacOS. I give them 100% credit for this and I will tell you it works great.* 
 
 As of the current date, March 18, 2024, there isn't a method available to display a PKG installer within the company portal. The only option is to configure PKG installers to require installation, which effectively mandates the installation of the application without offering it for user selection in the company portal.
 
