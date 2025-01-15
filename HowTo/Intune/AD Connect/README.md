@@ -98,7 +98,7 @@ Either output should contain unique and relevant information to your Umbrella or
 
 Now add the Cisco Secure Client Core VPN to the Intune via PKG
 
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313784666-016a52bf-a3ab-451c-8e72-95bb81ba6383%20(1).png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313784666-016a52bf-a3ab-451c-8e72-95bb81ba6383.png)
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313786367-e4d3fd5e-7e48-42e7-b955-9628afec36b1.png)
 
 **THIS STEP IS ONLY NEEDED IF YOU WANT TO HIDE THE VPN CLIENT**
