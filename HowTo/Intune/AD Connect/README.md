@@ -2,6 +2,8 @@
 
 THIS IS A **UNOFFICAL** GUIDE USE AT YOUR OWN RISK
 
+I did copy and reuse this content from another contributor because it was spot on. https://github.com/darossi87/intune/tree/Cisco-Secure-Client-With-Umbrella-MacOS. I give them 100% credit for this and I will tell you it works great. 
+
 As of the current date, March 18, 2024, there isn't a method available to display a PKG installer within the company portal. The only option is to configure PKG installers to require installation, which effectively mandates the installation of the application without offering it for user selection in the company portal.
 
 Building a customized installation of Cisco Secure Client with Cisco Umbrella for macOS involves several steps. Here's a breakdown of the process:
@@ -10,9 +12,9 @@ Firstly, as we utilize Cisco Umbrella, accessing the download client is only fea
 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313776819-9f8464a4-f2e6-493a-b660-a68879a28833.png)
 
-The Headinstaller will download file named: cisco-secure-client-macos-5.1.2.42-webdeploy-k9.pkg
+The Headend installer will download file named: cisco-secure-client-macos-5.1.2.42-webdeploy-k9.pkg
 
-If you've obtained a predeploy file, it won't function as expected. From my observations, only the webdeploy file (also known as Headend Deployment) is capable of being extracted in this manner.
+If you've obtained a predeploy file, it won't function as expected. From my observations, only the webdeploy file (also known as Headend Deployment) is capable of being exgtracted in this manner.
 
 Also, remember to retrieve your Orginfo.json file if using Cisco Umbrella during this process. This is will be REQUIRED for OrgfileMove.sh script that move your Orginfo.json file
 
