@@ -14,7 +14,7 @@ Firstly, as we utilize Cisco Umbrella, accessing the download client is only fea
 
 The Headend installer will download file named: cisco-secure-client-macos-5.1.2.42-webdeploy-k9.pkg
 
-If you've obtained a predeploy file, it won't function as expected. From my observations, only the webdeploy file (also known as Headend Deployment) is capable of being exgtracted in this manner.
+If you've obtained a predeploy file, it won't function as expected. From my observations, only the webdeploy file (also known as Headend Deployment) is capable of being extracted in this manner.
 
 Also, remember to retrieve your Orginfo.json file if using Cisco Umbrella during this process. This is will be REQUIRED for OrgfileMove.sh script that move your Orginfo.json file
 
@@ -121,7 +121,7 @@ Leave these settings below alone do not touch them
 
 In Scopes and Assignments, select your desired user/device assignment and click Create. 
 
-Finaly we do Umbrella
+Finally we do Umbrella
 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313784666-016a52bf-a3ab-451c-8e72-95bb81ba6383.png)
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313787212-42404266-23a3-41fa-8bb7-fbe2d568f6f9.png)
