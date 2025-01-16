@@ -4,6 +4,8 @@ First step will be to install sentinel 1, for this method we will be utilizing a
 
 You will need an install [script](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Intune/SentinelOneMAC/InstallSentinel.sh).
 
+<a href="https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Intune/SentinelOneMAC/InstallSentinel.sh" title="Download" download>Script</a>
+
 If you do not have it configured on the MAC correctly you will get some messages. See below as an example
 
 
