@@ -3,3 +3,4 @@ If you do not have it configured on the MAC correctly you will get some messages
 ![alt text](../../Assets/SentinelOneMAC/Image1.png)
 <br>
 If you want to avoid having this issue this is what you can do. 
+now
