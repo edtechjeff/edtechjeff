@@ -38,7 +38,7 @@ fi
 
 Now that you have the script lets switch into Intune > Devices > MAC > Scripts and create a new script
 
-*reason we are doing scripts instead of application deployment is that with scripts you can control how often it will go out and try and that makes the deployment more efficient than application deployments*
+*Reason we are doing scripts instead of application deployment is that with scripts you can control how often it will go out and try and that makes the deployment more efficient than application deployments*
 
 ![](../../Assets/SentinelOneMAC/Image1.png)
 
@@ -50,15 +50,28 @@ Assign to your groups, and wait for them to check in and get the installer. When
 
 ![alt text](../../Assets/SentinelOneMAC/image3.png)
 
-With that being all done, SentinelOne is now installed but not configured. If the following task are not completed via Intune then the user or a computer tech will have to do these manually, now who wants that!!
+With that being all done, SentinelOne is now installed but not configured. 
 
+![alt text](../../Assets/SentinelOneMAC/image4.png)
 
+After devices start reporting that the script was successfully executed, you will see results in the device status that the install was successful:
 
+![alt text](../../Assets/SentinelOneMAC/image5.png)
+
+If the following task are not completed via Intune then the user or a computer tech will have to do these manually, now who wants that!! 
 
 If you do not have it configured on the MAC correctly you will get some messages. See below as an example
 
+![alt text](../../Assets/SentinelOneMAC/image6.png)
 
+To avoid these we are going to push out profiles to the devices
 
-If you want to avoid having this issue this is what you can do. 
+Deploying the Necessary Profiles
+As we mentioned at the end of the previous section, some necessary profiles must be pushed to the devices so SentinelOne can properly protect them. Although the SentinelOne KB does not have any documentation on using Intune, they do have documentation on using jamf. We can use the same configuration files and deploy them with Intune. There are four profiles we need to deploy:
 
-Now
+1. - Network Monitoring
+2. - Privacy Control
+3. - Notifications
+4. - Network Filtering
+
+These are available as .mobileconfig files here, or you can get them from SentinelOne’s KB if you have access to their dashboard. For each of these files, we need to create a custom device configuration policy in Intune. From Intune, navigate to devices > macos > configuration. Click Add
