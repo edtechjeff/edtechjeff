@@ -36,6 +36,24 @@ fi
 
 #####################################################################################
 
+Now that you have the script lets switch into Intune > Devices > MAC > Scripts and create a new script
+
+*reason we are doing scripts instead of application deployment is that with scripts you can control how often it will go out and try and that makes the deployment more efficient than application deployments*
+
+![](../../Assets/SentinelOneMAC/Image1.png)
+
+Provide a name, and under script settings, browse to the script file to upload the contents. Select No to run the script as signed-in user. Modify the notifications and script frequency to your liking.
+
+![alt text](../../Assets/SentinelOneMAC/image2.png)
+
+Assign to your groups, and wait for them to check in and get the installer. When the app gets installed on the user devices, they’ll see some notifications about background items:
+
+![alt text](../../Assets/SentinelOneMAC/image3.png)
+
+With that being all done, SentinelOne is now installed but not configured. If the following task are not completed via Intune then the user or a computer tech will have to do these manually, now who wants that!!
+
+
+
 
 If you do not have it configured on the MAC correctly you will get some messages. See below as an example
 
