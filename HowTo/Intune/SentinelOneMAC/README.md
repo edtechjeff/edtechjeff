@@ -74,4 +74,19 @@ As we mentioned at the end of the previous section, some necessary profiles must
 3. Notifications
 4. Network Filtering
 
-These are available as .mobileconfig files [here](https://github.com/edtechjeff/edtechjeff/tree/main/HowTo/Intune/SentinelOneMAC), or you can get them from SentinelOne’s KB if you have access to their dashboard. For each of these files, we need to create a custom device configuration policy in Intune. From Intune, navigate to devices > macos > configuration. Click Add
+These are available as .mobileconfig files [here](https://github.com/edtechjeff/edtechjeff/tree/main/HowTo/Intune/SentinelOneMAC), or you can get them from SentinelOne’s KB if you have access to their dashboard. For each of these files, we need to create a custom device configuration policy in Intune. From Intune, navigate to devices > macos > configuration. Click Add3
+
+![alt text](../../Assets/SentinelOneMAC/image7.png)
+
+Then select Templates > Custom:
+
+![alt text](../../Assets/SentinelOneMAC/image8.png)
+
+Provide a name for the Intune policy and continue to the configuration settings. Name the profile (this is how it will appear in the macos settings). Select Device Channel as the deployment channel, and then browse to the mobileconfig file.
+
+![alt text](../../Assets/SentinelOneMAC/image9.png)
+
+Assign to your target groups, and then repeat these steps for the other three profiles. When these are all deployed, you can find them on the local device under settings > profiles:
+
+![alt text](../../Assets/SentinelOneMAC/image10.png)
+
