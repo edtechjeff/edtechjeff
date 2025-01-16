@@ -69,9 +69,9 @@ To avoid these we are going to push out profiles to the devices
 Deploying the Necessary Profiles
 As we mentioned at the end of the previous section, some necessary profiles must be pushed to the devices so SentinelOne can properly protect them. Although the SentinelOne KB does not have any documentation on using Intune, they do have documentation on using jamf. We can use the same configuration files and deploy them with Intune. There are four profiles we need to deploy:
 
-1. - Network Monitoring
-2. - Privacy Control
-3. - Notifications
-4. - Network Filtering
+1. Network Monitoring
+2. Privacy Control
+3. Notifications
+4. Network Filtering
 
 These are available as .mobileconfig files here, or you can get them from SentinelOne’s KB if you have access to their dashboard. For each of these files, we need to create a custom device configuration policy in Intune. From Intune, navigate to devices > macos > configuration. Click Add
