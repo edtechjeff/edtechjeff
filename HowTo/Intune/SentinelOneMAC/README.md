@@ -1,6 +1,6 @@
 # Installing SentinelOne on MAC with Intune and configuration
 
-## The following article is an explanation of how to deploy SentinelOne to a MAC using Intune and also do some configurations
+## The following article is an explanation of how to deploy SentinelOne to a MAC using Intune and creation of configuration profiles
 
 First step will be to install SentinelOne, for this method we will be utilizing an azure storage account to host the .PKG file. I will admit that you can do this without a storage account and do this within Application Deployment but by utilizing this method the deployment in some ways is more efficient.
 
@@ -91,4 +91,7 @@ Provide a name for the Intune policy and continue to the configuration settings.
 Assign to your target groups, and then repeat these steps for the other three profiles. When these are all deployed, you can find them on the local device under settings > profiles:
 
 ![alt text](../../Assets/SentinelOneMAC/image10.png)
+
+Now you have deployed SentinelOne and configured. There is one more setting that I am getting conflicting information on. Full Disk Access. If you look it up with your favorite search
+engine you will see some references to having to deploy additional policies. I have included the file that I was able to find on the web that actually does the same thing that we just did with one policy but for all at the same time. Its still utilizing Custom configuration profile. I will say I could not tell a difference with either method. Both removed warnings including that of full disk access. I will also state for the record that it does not show up on the MAC as its allowed, but the console does not show up any warnings and on the client no warnings. 
 
