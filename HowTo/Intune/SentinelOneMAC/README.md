@@ -2,7 +2,7 @@
 
 ## The following article is an explanation of how to deploy SentinelOne to a MAC using Intune and also do some configurations
 
-First step will be to install sentinel 1, for this method we will be utilizing an azure storage account to host the .PKG file. I will admit that you can do this without a storage account and do this within Application Deployment but by utilizing this method the deployment in some ways is more efficient.
+First step will be to install SentinelOne, for this method we will be utilizing an azure storage account to host the .PKG file. I will admit that you can do this without a storage account and do this within Application Deployment but by utilizing this method the deployment in some ways is more efficient.
 
 You will need an install [script](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Intune/SentinelOneMAC/InstallSentinel.sh).
 
