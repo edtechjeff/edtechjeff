@@ -29,8 +29,11 @@ Unique User Identifier          user.mail
 ## URLS for Google Side
 
 Login URL: https://login.microsoftonline.com/2238ddfb-9425-4fed-8482-c2cdef1a8793/saml2
+
 Microsoft Entra Identifier: (*Get from Application*)
+
 Logout URL: https://login.microsoftonline.com/common/wsfederation?wa=wsignout1.0
+
 Change Password URL: https://mysignins.microsoft.com/security-info/password/change
 
 ![alt text](../Assets/SSOWorkspaces/image3.png)
