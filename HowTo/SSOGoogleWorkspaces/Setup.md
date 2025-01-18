@@ -3,6 +3,12 @@
 
 * Please note, this is a work in progress as of *1/18/2025* I will continue to look at this because the documentation on both sides of Google and Microsoft are a little bit confusing. The goal of this document will be to have a more comprehensive document to help others in the future. Please stay tuned. 
 
+Documents used as reference
+* https://support.google.com/a/answer/12032922?hl=en&visit_id=638727404915468108-289911806&p=sso_profiles&rd=1#legacy_saml_deprecation&zippy=%2Cconfigure-the-legacy-sso-profile
+* https://learn.microsoft.com/en-us/entra/identity/saas-apps/google-apps-tutorial
+* https://cloud.google.com/architecture/identity/federating-gcp-with-azure-ad-configuring-provisioning-and-single-sign-on
+
+
 ## Basic SAML Configuration
 
 
