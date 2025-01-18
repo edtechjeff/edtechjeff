@@ -15,14 +15,14 @@ Documents used as reference
 
 Identifier (Entity ID)
 
-https://google.com/a/*YourGoogleDOMAIN*
+https://google.com/a/ *YourGoogleDOMAIN*
 
 Reply URL (Assertion Consumer Service URL)
 
 https://www.google.com
 
 Sign on URL
-https://www.google.com/a/*YourGoogleDOMAIN*/ServiceLogin?continue=https://mail.google.com
+https://www.google.com/a/ *YourGoogleDOMAIN* /ServiceLogin?continue=https://mail.google.com
 
 Logout Url (Optional)
 
