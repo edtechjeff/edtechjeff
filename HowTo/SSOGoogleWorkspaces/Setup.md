@@ -1,6 +1,8 @@
 
 # SSO Google Workspaces
 
+* Please note, this is a work in progress as of *1/18/2025* I will continue to look at this because the documentation on both sides of Google and Microsoft are a little bit confusing. The goal of this document will be to have a more comprehensive document to help others in the future. Please stay tuned. 
+
 ## Basic SAML Configuration
 
 
