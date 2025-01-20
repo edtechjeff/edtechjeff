@@ -7,6 +7,7 @@ Documents used as reference
 * https://support.google.com/a/answer/12032922?hl=en&visit_id=638727404915468108-289911806&p=sso_profiles&rd=1#legacy_saml_deprecation&zippy=%2Cconfigure-the-legacy-sso-profile
 * https://learn.microsoft.com/en-us/entra/identity/saas-apps/google-apps-tutorial
 * https://cloud.google.com/architecture/identity/federating-gcp-with-azure-ad-configuring-provisioning-and-single-sign-on
+* https://support.google.com/a/users/answer/12498137?hl=en
 
 
 ## Basic SAML Configuration
