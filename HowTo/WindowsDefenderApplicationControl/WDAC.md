@@ -32,6 +32,7 @@ Here you will see all the rules and also where you can add additional rules
 ![alt text](../Assets/WDAC/image5.png)
 
 Click on Add Custom
+
 ![alt text](../Assets/WDAC/image6.png)
 
 For this example we are going to do a Rule Type of Publisher. In the links provided it details about the different types. I am going to open it up a little bit and only need the Issuing CA and Publisher to match. Click Next 
