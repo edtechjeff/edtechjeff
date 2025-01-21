@@ -110,5 +110,5 @@ On this screen, call me crazy, but I always manually remove the XML and then cli
 Now its update and click review and save
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image25.png)
 
-h1 {Once you do that, you will need to sync the device and give it few minutes to get to the device. Once you do that and you try to open Putty, it will now open}
+<font size="4">Once you do that, you will need to sync the device and give it few minutes to get to the device. Once you do that and you try to open Putty, it will now open</font>
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image15.png)
