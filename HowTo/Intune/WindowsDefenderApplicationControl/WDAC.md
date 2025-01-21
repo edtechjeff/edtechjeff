@@ -17,6 +17,7 @@
 ## Create Base Policy on reference machine
 ### Launch the App Control Wizard and click on Policy Creator
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image1.png)
+![alt text](../../Assets/WDAC/Image1.png)
 ---
 ### Click next and leave the defaults
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image2.png)
