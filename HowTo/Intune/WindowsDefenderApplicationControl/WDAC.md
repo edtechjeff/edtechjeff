@@ -107,8 +107,8 @@ Go back into Intune > Endpoint Security > App Control for Business and click on 
 On this screen, call me crazy, but I always manually remove the XML and then click on the folder icon to browse to the new file
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image24.png)
 
-Now its update and click review and save
+### Now its update and click review and save
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image25.png)
 
-<font size="7">Once you do that, you will need to sync the device and give it few minutes to get to the device. Once you do that and you try to open Putty, it will now open</font>
+### Once you do that, you will need to sync the device and give it few minutes to get to the device. Once you do that and you try to open Putty, it will now open</font>
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image15.png)
