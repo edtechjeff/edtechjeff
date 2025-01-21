@@ -43,12 +43,12 @@ Here is the result of what you just did, Click Next it will start to build the p
 Final screen you can now close the wizard
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image9.png)
 
-## Intune Policies
+# Intune Policies
 Switch into Intune console and go into Endpoint Security > App Control for Business
 First thing you need to do is create an Managed Installer Policy. 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image10.png)
 
-This policy there is no configuration, click on Add and go through the prompts. Let if finish and when you are done it should be ready. Click on App Control for Business tab
+This policy there is no configuration, click on Add and go through the prompts. Let if finish and when you are done it should be ready.Click on App Control for Business tab
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image11.png)
 
 Click on Create Policy, give it a name and click next
