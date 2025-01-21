@@ -112,7 +112,7 @@ Currently I have the policy setup to block
 ---
 ### Sync the device and give it few minutes for the policy to take effect. Once you do that and you try to open Putty, it will now open.
 
-# *Sometimes you might need to reboot the device to take full effect*
+# *Please Note: A reboot might be necessary the device to take full effect*
 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image15.png)
 ---
