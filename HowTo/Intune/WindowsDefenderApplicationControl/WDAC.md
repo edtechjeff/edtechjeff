@@ -92,6 +92,7 @@ Currently I have the policy setup to block
 ---
 ### This is what it looks like after you set options. You have many ways of doing this. I usually do Publisher. Click Create Rule
 *NOTE: Make sure on the reference device has the same application version as the version you are deploying*
+<br>
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image20.png)
 ---
 ### It will look something like the following, click next
