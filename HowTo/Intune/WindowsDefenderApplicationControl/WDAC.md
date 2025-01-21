@@ -44,8 +44,8 @@
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image9.png)
 
 # Intune Policies
-Switch into Intune console and go into Endpoint Security > App Control for Business
-First thing you need to do is create an Managed Installer Policy. 
+### Switch into Intune console and go into Endpoint Security > App Control for Business
+### First thing you need to do is create an Managed Installer Policy. 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image10.png)
 
 ### This policy there is no configuration, click on Add and go through the prompts. Let if finish and when you are done it should be ready.
@@ -101,10 +101,10 @@ Currently I have the policy setup to block
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image22.png)
 
 ## Updating the Policy
-Go back into Intune > Endpoint Security > App Control for Business and click on the policy we are going to edit scroll down till you see the section called Configuration settings and click on Edit
+### Go back into Intune > Endpoint Security > App Control for Business and click on the policy we are going to edit scroll down till you see the section called Configuration settings and click on Edit
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image23.png)
 
-On this screen, call me crazy, but I always manually remove the XML and then click on the folder icon to browse to the new file
+### On this screen, call me crazy, but I always manually remove the XML and then click on the folder icon to browse to the new file
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image24.png)
 
 ### Now its update and click review and save
