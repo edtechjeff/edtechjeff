@@ -68,7 +68,7 @@ Click next on Scope tags and assign to your group you want to apply this policy 
 
 ## Check your device
 Currently I have the policy setup to block 
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image0.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image0.png)
 
 ## Allowing Putty
 
@@ -76,39 +76,39 @@ Now that you have Putty disabled you can now allow it.
 
 Bring up the App Control Wizard but this time click on Policy Editor. 
 * For my setups I tend to modify the policy that I created and start to allow from there.
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image1.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image1.png)
 
 Click Browse and find your file you created
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image16.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image16.png)
 
 On this screen you do have the option to save it as a new file. I do not do this. What will happen is will add some version numbers to the end once you save it. I prefer this, click next and next again
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image17.png)
 
 Click on Add Custom in the upper right hand corner
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image18.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image18.png)
 
 You will get the following screen. The first one is what it looks like before you set any options
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image19.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image19.png)
 
 This is what it looks like after you set options. You have many ways of doing this. I usually do Publisher. Click Create Rule
 *NOTE: Make sure on the reference device has the same application version as the version you are deploying*
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image20.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image20.png)
 
 It will look something like the following, click next
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image21.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image21.png)
 
 Its finished and if you note that the name and with a version number. Very important you keep track of version numbers. You can close down the Wizard.
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image22.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image22.png)
 
 ## Updating the Policy
 Go back into Intune > Endpoint Security > App Control for Business and click on the policy we are going to edit scroll down till you see the section called Configuration settings and click on Edit
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image23.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image23.png)
 
 On this screen, call me crazy, but I always manually remove the XML and then click on the folder icon to browse to the new file
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image24.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image24.png)
 
 Now its update and click review and save
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image25.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image25.png)
 
 Once you do that, you will need to sync the device and give it few minutes to get to the device. Once you do that and you try to open Putty, it will now open
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image15.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image15.png)
