@@ -114,7 +114,7 @@ Copy HideVPN.sh into Pre-Install Script. Script is link below.  If you're not us
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313857204-37165e59-4157-4908-aec0-fe184e756fbb.png)
 
 
-Leave these settings below alone do not touch them
+Leave these settings below as default
 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313788698-8b53b2a2-481e-4b4b-81ef-cf8b50d3c7fb.png)
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313786608-4703c1b3-1d18-4f1c-8421-4533d9591976.png)
