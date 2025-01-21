@@ -48,7 +48,8 @@ Switch into Intune console and go into Endpoint Security > App Control for Busin
 First thing you need to do is create an Managed Installer Policy. 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image10.png)
 
-This policy there is no configuration, click on Add and go through the prompts. Let if finish and when you are done it should be ready.Click on App Control for Business tab
+This policy there is no configuration, click on Add and go through the prompts. Let if finish and when you are done it should be ready.
+Click on App Control for Business tab
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image11.png)
 
 Click on Create Policy, give it a name and click next
