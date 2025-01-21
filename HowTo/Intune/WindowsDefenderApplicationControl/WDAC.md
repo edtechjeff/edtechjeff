@@ -25,7 +25,7 @@ Here you have 3 options. My professional opinion is it goes from left to right m
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image3.png)
 
 Here you will need to slide over Managed installer and also turn audit mode off. I would suggest Audit mode the first time just to cover yourself. Click Next
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image4.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image4.png)
 
 Here you will see all the rules and also where you can add additional rules
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image5.png)
@@ -65,3 +65,4 @@ Click next on Scope tags and assign to your group you want to apply this policy 
 ## Check your device
 Currently I have the policy setup to block 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image0.png)
+
