@@ -50,6 +50,8 @@ First thing you need to do is create an Managed Installer Policy.
 
 This policy there is no configuration, click on Add and go through the prompts. Let if finish and when you are done it should be ready.
 Click on App Control for Business tab
+<br>
+</br>
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image11.png)
 
 Click on Create Policy, give it a name and click next
