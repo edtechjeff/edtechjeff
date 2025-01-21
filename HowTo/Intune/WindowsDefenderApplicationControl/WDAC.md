@@ -3,7 +3,7 @@
 ## Useful Links
 * https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/design/appcontrol-wizard-create-base-policy
 * https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/design/example-appcontrol-base-policies
-
+---
 # Warning, depending on what you are setting this could block out the device to the point where you might have to reset the device. BE CAREFUL
 
 ## Before you being
