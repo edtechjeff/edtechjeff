@@ -19,7 +19,7 @@ Launch the App Control Wizard and click on Policy Creator
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image1.png)
 
 Click next and leave the defaults
-![alt text](../Assets/WDAC/image2.png)
+https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image2.png
 
 Here you have 3 options. My professional opinion is it goes from left to right most restrictive to least restrictive. I have worked with the different settings and I do feel like the Allow Microsoft Mode is a good place to start and go from there depending on your applications. These policies do have already built in allows that can make things easier.  Also in this link [here](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/design/example-appcontrol-base-policies) are some Microsoft pre-built policies to also try out. But for me I am going to build my own. Select the option you would like give the policy a location and name you would like to name it and click next.
 ![alt text](../Assets/WDAC/image3.png)
