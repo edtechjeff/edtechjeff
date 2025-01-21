@@ -110,6 +110,9 @@ Currently I have the policy setup to block
 ### Now its update and click review and save
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image25.png)
 ---
-### Once you do that, you will need to sync the device and give it few minutes to get to the device. Once you do that and you try to open Putty, it will now open</font>
+### Sync the device and give it few minutes for the policy to take effect. Once you do that and you try to open Putty, it will now open.
+
+# *Sometimes you might need to reboot the device to take full effect*
+
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image15.png)
 ---
