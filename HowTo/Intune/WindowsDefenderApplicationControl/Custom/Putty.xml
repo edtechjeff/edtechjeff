@@ -2,8 +2,8 @@
 <SiPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" PolicyType="Base Policy" xmlns="urn:schemas-microsoft-com:sipolicy">
   <VersionEx>10.0.5.0</VersionEx>
   <PlatformID>{2E07F7E4-194C-4D20-B7C9-6F44A6C5A234}</PlatformID>
-  <PolicyID>{55DA153A-5AE3-4CD4-9B58-34F840A4E53E}</PolicyID>
-  <BasePolicyID>{55DA153A-5AE3-4CD4-9B58-34F840A4E53E}</BasePolicyID>
+  <PolicyID>{3B6B5110-8783-44B5-82EC-156C46B28AAA}</PolicyID>
+  <BasePolicyID>{3B6B5110-8783-44B5-82EC-156C46B28AAA}</BasePolicyID>
   <Rules>
     <Rule>
       <Option>Enabled:Unsigned System Integrity Policy</Option>
@@ -34,10 +34,6 @@
     <FileAttrib ID="ID_FILEATTRIB_REFRESH_POLICY" FriendlyName="RefreshPolicy.exe FileAttribute" FileName="RefreshPolicy.exe" MinimumFileVersion="10.0.19042.0" />
   </FileRules>
   <Signers>
-    <Signer Name="Sectigo Public Code Signing CA R36" ID="ID_SIGNER_S_0">
-      <CertRoot Type="TBS" Value="0EEB0F83C55CCAAF275CEC9CAAED00280B6DD9BD8E37BD8A191A5CF77A0E2D1298EDB019E2A1E67E3F7BD4B1C7616DC0" />
-      <CertPublisher Value="Simon Tatham" />
-    </Signer>
     <Signer Name="MincryptKnownRootMicrosoftProductRoot1997" ID="ID_SIGNER_MICROSOFT_PRODUCT_1997">
       <CertRoot Type="Wellknown" Value="04" />
     </Signer>
@@ -114,7 +110,6 @@
     <SigningScenario ID="ID_SIGNINGSCENARIO_UMCI" FriendlyName="User Mode Signing Scenario" Value="12">
       <ProductSigners>
         <AllowedSigners>
-          <AllowedSigner SignerId="ID_SIGNER_S_0" />
           <AllowedSigner SignerId="ID_SIGNER_MICROSOFT_PRODUCT_1997_UMCI" />
           <AllowedSigner SignerId="ID_SIGNER_MICROSOFT_PRODUCT_2001_UMCI" />
           <AllowedSigner SignerId="ID_SIGNER_MICROSOFT_PRODUCT_2010_UMCI" />
