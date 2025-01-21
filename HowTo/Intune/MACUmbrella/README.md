@@ -105,10 +105,10 @@ Now add the Cisco Secure Client Core VPN to the Intune via PKG
 
 **THIS STEP IS ONLY NEEDED IF YOU WANT TO HIDE THE VPN CLIENT**
 
-Copy OrgfileMove.sh into Pre-Install Script required for Umbrella. Script is link below.  If you're not using Umbrella you can scriopt this step.
+Copy HideVPN.sh into Pre-Install Script. Script is link below.  If you're not using Umbrella you can skip this step.
 *This moves your license file to the license file location also you must edit the script for it work. 
 
-https://github.com/darossi87/Intune/blob/Cisco-Secure-Client-With-Umbrella-MacOS/OrgfileMove.sh
+edtechjeff/HowTo/Intune/MACUmbrella/HideVPN.sh
 
 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313857204-37165e59-4157-4908-aec0-fe184e756fbb.png)
