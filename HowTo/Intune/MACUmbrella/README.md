@@ -128,7 +128,7 @@ In Scopes and Assignments, select your desired user/device assignment and click 
 
 Now copy OrgfileMove.sh editing the URL of were your Orginfo.json is located and copy it into the Pre-Install Script Area
 
-*This moves your license file to the license file location also you must edit the script for it work. 
+- *This moves your license file to the license file location also you must edit the script for it work.*
 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313787669-b54474ff-ed55-4f48-948b-192cabcfd7ec.png)
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313788698-8b53b2a2-481e-4b4b-81ef-cf8b50d3c7fb.png)
