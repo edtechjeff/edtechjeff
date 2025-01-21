@@ -133,7 +133,7 @@ Now copy OrgfileMove.sh editing the URL of were your Orginfo.json is located and
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313787669-b54474ff-ed55-4f48-948b-192cabcfd7ec.png)
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313788698-8b53b2a2-481e-4b4b-81ef-cf8b50d3c7fb.png)
 
-Leave these settings below alone do not touch them
+Leave these settings below as default
 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313788772-78439863-4dc1-4d6c-b446-e1510066bf0f.png)
 
