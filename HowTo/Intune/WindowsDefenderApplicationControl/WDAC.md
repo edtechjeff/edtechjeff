@@ -82,7 +82,7 @@ Click Browse and find your file you created
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image16.png)
 
 On this screen you do have the option to save it as a new file. I do not do this. What will happen is will add some version numbers to the end once you save it. I prefer this, click next and next again
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image17.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image17.png)
 
 Click on Add Custom in the upper right hand corner
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image18.png)
