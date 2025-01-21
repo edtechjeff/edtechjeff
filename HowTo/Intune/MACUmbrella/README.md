@@ -96,7 +96,7 @@ dig txt debug.opendns.com
 
 Either output should contain unique and relevant information to your Umbrella organization such as your OrgID. 
 
-# DEPLOYING THE APP
+# Deploying VPN App
 
 Now add the Cisco Secure Client Core VPN to the Intune via PKG
 
@@ -121,12 +121,13 @@ Leave these settings below alone do not touch them
 
 In Scopes and Assignments, select your desired user/device assignment and click Create. 
 
-Finally we do Umbrella
+# Deploying Umbrella App
 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313784666-016a52bf-a3ab-451c-8e72-95bb81ba6383.png)
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313787212-42404266-23a3-41fa-8bb7-fbe2d568f6f9.png)
 
 Now copy OrgfileMove.sh editing the URL of were your Orginfo.json is located and copy it into the Pre-Install Script Area
+*This moves your license file to the license file location also you must edit the script for it work. 
 
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313787669-b54474ff-ed55-4f48-948b-192cabcfd7ec.png)
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/IntuneUmbrellaMAC/313788698-8b53b2a2-481e-4b4b-81ef-cf8b50d3c7fb.png)
