@@ -64,4 +64,4 @@ Click next on Scope tags and assign to your group you want to apply this policy 
 
 ## Check your device
 Currently I have the policy setup to block 
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image0.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image0.png)
