@@ -111,4 +111,4 @@ Now its update and click review and save
 ![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image25.png)
 
 Once you do that, you will need to sync the device and give it few minutes to get to the device. Once you do that and you try to open Putty, it will now open
-![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/image15.png)
+![image](https://github.com/edtechjeff/edtechjeff/blob/main/HowTo/Assets/WDAC/Image15.png)
