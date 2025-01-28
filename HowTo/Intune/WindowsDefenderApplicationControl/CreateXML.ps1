@@ -1,0 +1,1 @@
+New-CIPolicy -FilePath C:\path\to\file\basesup.xml -ScanPath "C:\path\to\file\to\scan\Putty" -UserPEs -Level Publisher -NoShadowCopy -Verbose
