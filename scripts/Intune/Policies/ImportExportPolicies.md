@@ -23,3 +23,13 @@ You will need to know the following information when you run the script
 
 When you run the script it will output 
 ![alt text](Assets/Image1.png)
+
+Now you should have all your configurations downloaded and viewable in JSON format
+![](Assets/image2.png)
+
+---
+# Import Policies
+[text](Import-Intune-Policies.ps1)>
+
+*Its important to know that if you have the same policy name it will import it with the same name unless you change the name in the JSON. Also note these will not assign but will make things more efficient for you.*
+
