@@ -29,7 +29,7 @@ Now you should have all your configurations downloaded and viewable in JSON form
 
 ---
 # Import Policies
-[text](Import-Intune-Policies.ps1)>
+[Run this script](Import-Intune-Policies.ps1)>
 
 *Its important to know that if you have the same policy name it will import it with the same name unless you change the name in the JSON. Also note these will not assign but will make things more efficient for you.*
 
