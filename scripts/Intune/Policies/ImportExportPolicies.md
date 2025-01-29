@@ -1,7 +1,7 @@
 # Import and Export Policies (Conditional Access and Intune)
 
 ---
-## Export-intune-all.ps1
+## [Export-intune-all.ps1](export-intune-all.ps1)
 This PowerShell script will export all polices out of Intune which include
 - Compliance policies
 - Configuration policies
@@ -29,7 +29,11 @@ Now you should have all your configurations downloaded and viewable in JSON form
 
 ---
 # Import Policies
-[Run this script](Import-Intune-Policies.ps1)>
+Run the following script in order to import the policies[](Import-Intune-Policies.ps1)>
 
-*Its important to know that if you have the same policy name it will import it with the same name unless you change the name in the JSON. Also note these will not assign but will make things more efficient for you.*
+## Couple of Notes
+- *Its important to know that if you have the same policy name it will import it with the same name unless you change the name in the JSON. Also note these will not assign but will make things more efficient for you.*
+- *If you just want to do, for example application policies move just the application policies to their own sub folder and in the script when it ask where point it to that sub folder*
+
+
 
