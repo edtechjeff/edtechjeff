@@ -59,8 +59,7 @@ Install-Module Microsoft.Graph -Force
 # [Export Conditional Access Policies](export-ca.ps1)
 This script will import Conditional Access Policies
 Couple of Notes
-- *If you just want to do one, just have what CA's you want to restore in the OUTPUT folder*
-- 
+- *If you just want to do one, just have what CA's you want to restore in the OUTPUT folder* 
 
 ## Install Microsoft Graph PowerShell
 Install-Module Microsoft.Graph -Force
