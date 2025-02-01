@@ -1,7 +1,7 @@
 # Quick Start Instructions
 ---
 
-In this article we are going to cover how to setup a WDS server to PXE boot and utilize the ADK also. I found this great [article](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/system-builder-deployment?view=windows-11)that I got the original idea from and base files.  
+In this article we are going to cover how to setup a WDS server to PXE boot and utilize the ADK also. I found this great [article](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/system-builder-deployment?view=windows-11) that I got the original idea from and base files.  
 
 ---
 
