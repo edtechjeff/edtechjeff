@@ -15,17 +15,16 @@ Here is a listing of items and things you need to have
 
 ---
 
-
+Once you get the server built 
 
 
 - [Download Files](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/system-builder-deployment?view=windows-11#extract-imageszip)
 
-- extract contents from zip to the new drive just keep the name of images
+- Extract contents from zip to the new drive just keep the name of images
 
-- share the images folder 
+- Share the images folder 
 
-
-- Install ADK and install
+- Download the ADK's for Windows and install
 
 - Create the following folders in images
     - Drivers
@@ -33,7 +32,7 @@ Here is a listing of items and things you need to have
     - Unattend
     - WinREMount
 
-- Delete the following Files and Folder
+- Delete the following Files and Folder (You can keep these, but I like to clean things up)
     - Projects
     - Windows
     - WinPE
@@ -41,7 +40,7 @@ Here is a listing of items and things you need to have
     - CreateProject
     - UpdateInboxApps
 
-- Go into the Scripts folder and delete the following files and or folders
+- Go into the Scripts folder and delete the following files and or folders (You can keep these, but I like to clean things up)
     - AutoPilot
     - Apply-Recovery
 
@@ -56,7 +55,9 @@ Here is a listing of items and things you need to have
 
 - Source
     - Windows11
+        - 23H2
         - 24H2
+        - NEXT Version
 
 - [Download the command file and put in the images folder change the extension to .CMD](MaintenanceTaskV2.txt)
 
