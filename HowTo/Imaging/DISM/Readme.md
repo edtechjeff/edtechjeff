@@ -61,7 +61,7 @@ Once you get the server built
 
 - [Download the command file and put in the images folder change the extension to .CMD](MaintenanceTaskV2.txt)
 
-- [Download this file and put in the scripts folder and change the extension to .PS1](RemoveWindowsPackages.txt)
+- [Download this file and put in the scripts folder and change the extension to .PS1](RemovePackages.txt)
 
 - [Download this file and put in the scripts folder and change the extension to .CMD. You will be replacing the one that is in there already](CaptureImage.txt)
 
