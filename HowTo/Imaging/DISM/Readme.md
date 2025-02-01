@@ -44,7 +44,7 @@ Once you get the server built
     - AutoPilot
     - Apply-Recovery
 
-- Back at the images folder
+- Go back at the images folder
 
 - In the drivers folder create the following folders
     - WinPE
@@ -58,6 +58,8 @@ Once you get the server built
         - 23H2
         - 24H2
         - NEXT Version
+---
+
 
 - [Download the command file and put in the images folder change the extension to .CMD](MaintenanceTaskV2.txt)
 
@@ -65,16 +67,18 @@ Once you get the server built
 
 - [Download this file and put in the scripts folder and change the extension to .CMD. You will be replacing the one that is in there already](CaptureImage.txt)
 
-- Now we have a base of what we need. You will need to download the WinPE drivers based on what manufacture you have. I am going with dell;
+- Now we have a base of what we need. You will need to download the WinPE drivers based on what manufacture you have. I am going with dell. The WinPE drivers are important part and you will need these. They will be injected into the WIM files 
 
 - [DellDriverPack](https://www.dell.com/support/kbdoc/en-us/000211541/winpe-11-driver-pack)
 
-- extract the files from the cab with the following command adjusting to the name and path to where you want to extract, in our case it will be:
+- You will need to extract the files from the cab with the following command adjusting to the name and path to where you want to extract, in our case it will be:
     - expand "WinPE11.0-Drivers-A05-TPKY4.cab" -f:* F:\Images\Drivers\WinPE
+
+The next driver is what is call the Intel Rapid Storage Driver. This driver is important because, from what I am seeing with Dell, the storage controller is set to RAID even though there might not be a raid setup. You can manually set it to AHCI but just by adding this driver will avoid this issue. 
 
 - [Download this for the Intel Rapid Storage Driver](https://www.intel.com/content/www/us/en/download/19512/intel-rapid-storage-technology-driver-installation-software-with-intel-optane-memory-10th-and-11th-gen-platforms.html)
 
-- extract the drivers 
+- Use the following extract the drivers 
     - SetupRST.exe -extractdrivers F:\Images\Drivers\RSTAT
 
 - Download ISO for Windows 11
@@ -84,6 +88,7 @@ Once you get the server built
         f:\source\11\24H2
 ---
 
+## This pretty well gets you a basic setup for Imaging Windows 11 with WDS. Along with this article I will be posting more information on how to use what I have came up with based on the scripts and what ways you can use it. But for now hope this helps get you. Refer to the original article with more information on the scripts and original intended purpose and how it all works. Again I will post how I have been using it. Till then keep on learning something new. 
 
 
 
