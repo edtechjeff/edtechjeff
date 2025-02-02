@@ -4,9 +4,7 @@
 
 ## Start Network
 ```
-{ 
     startnet.cmd
-}
 ```
 ---
 
