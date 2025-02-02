@@ -3,7 +3,7 @@
 
 ## Start Network on WInPE booted machine
 ```
-    startnet.cmd
+startnet.cmd
 ```
 
 ## Get list of index of install WIM
