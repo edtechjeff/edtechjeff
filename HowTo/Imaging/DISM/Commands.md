@@ -2,7 +2,7 @@
 
 ---
 
-## Start Network
+## Start Network on WInPE booted machine
 ```
     startnet.cmd
 ```
