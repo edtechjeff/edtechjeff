@@ -2,6 +2,11 @@
 
 ---
 
+## Start Network
+`startnet.cmd`
+
+---
+
 ## Get list of index of install WIM
 `powershell Get-WindowsImage -ImagePath "C:\Installs\Windows11\23H2\install.wim"`
 ---

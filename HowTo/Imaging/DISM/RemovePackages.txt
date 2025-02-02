@@ -1,4 +1,4 @@
-# Script to Remove Packages
+# Script to Remove Packages Windows Pro
 
 # Mount the image
 $mountPath = "E:\Images\Mount"
