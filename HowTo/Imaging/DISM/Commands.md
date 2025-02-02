@@ -39,6 +39,9 @@
 
 ---
 
+## Pull device drivers from machine and export to c:\temp
+`dism /online /Export-Driver /Destination:c:\temp`
+
 ## Get listing of package
 `dism /Image:C:\images\mount /Get-Provisionedappxpackages`
 
