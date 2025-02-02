@@ -5,26 +5,21 @@
 ```
     startnet.cmd
 ```
----
 
 ## Get list of index of install WIM
 ```
 powershell Get-WindowsImage -ImagePath "C:\Installs\Windows11\23H2\install.wim"
 ```
----
 
 ## Enterprise Image
 ```
 Dism /export-image /sourceimagefile:C:\Installs\Windows11\23H2\install.wim /sourceindex:3 /destinationimagefile:C:\Images\Images\Enterprise.wim
 ```
----
 
 ## Education Image
 ```
 Dism /export-image /sourceimagefile:C:\Installs\Windows11\23H2\install.wim /sourceindex:1 /destinationimagefile:C:\Images\Images\Education.wim
 ```
-
----
 
 ## Pro Image
 ```
@@ -38,8 +33,6 @@ Dism /export-image /sourceimagefile:C:\Installs\Windows11\23H2\install.wim /sour
 Dism /Mount-Image /ImageFile:"C:\images\images\install.wim"  /index:3 /MountDir:"C:\mount"
 ```
 
----
-
 ## Unmount Install.WIM
 ```
 Dism /Unmount-Image /MountDir:"C:\mount" /commit
@@ -50,14 +43,10 @@ Dism /Unmount-Image /MountDir:"C:\mount" /commit
 dism /capture-image /imagefile:z:\images\edtechjeff.wim /capturedir:c:\ /name:"custom image" /Compress:Max
 ```
 
----
-
 ## Add Drivers to mounted WIM
 ```
 DISM /Image:C:\Mount /Add-Driver /Driver:C:\drivers\production\ /recurse /ForceUnsigned
 ```
-
----
 
 ## Pull device drivers from machine and export to c:\temp
 ```
