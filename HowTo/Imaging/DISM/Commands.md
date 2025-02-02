@@ -3,8 +3,11 @@
 ---
 
 ## Start Network
-`startnet.cmd`
-
+```
+{ 
+    startnet.cmd
+}
+```
 ---
 
 ## Get list of index of install WIM
