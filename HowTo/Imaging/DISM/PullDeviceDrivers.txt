@@ -1,1 +1,0 @@
-dism /online /Export-Driver /Destination:c:\temp

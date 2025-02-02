@@ -1,13 +1,14 @@
 # If Error Message you get the following
-Error: 1243
-The specified service does not exist.
+- Error: 1243
+  - The specified service does not exist.
 
 # Check to see if this registry is there
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WIMMount
+`HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WIMMount`
 
 # The Registry Key
 Windows Registry Editor Version 5.00
-
+---
+{
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WIMMount]
 "DebugFlags"=dword:00000000
 "Description"="@%SystemRoot%\\system32\\drivers\\wimmount.sys,-102"
@@ -27,8 +28,9 @@ Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WIMMount\Instances\WIMMount]
 "Altitude"="180700"
-"Flags"=dword:00000000
-
+"Flags"=dword:
+}
+---
 
 # Check to see if the following File is there
-“C:\windows\system32\drivers\wimmount.sys” exists on the computer.
+`C:\windows\system32\drivers\wimmount.sys” exists on the computer`
