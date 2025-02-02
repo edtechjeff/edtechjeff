@@ -44,6 +44,7 @@
 
 ## remove AppxPackages
 *Note: These package names are different based on version. IE Pro versus Enterprise
+
 `dism /image:\images\mount /Remove-Provisionedappxpackage /PackageName:Microsoft.BingNews_4.2.27001.0_neutral_~_8wekyb3d8bbwe`
 
 `dism /image:\images\mount /Remove-Provisionedappxpackage /PackageName:Microsoft.BingWeather_4.53.33420.0_neutral_~_8wekyb3d8bbwe`
