@@ -11,17 +11,17 @@
 powershell Get-WindowsImage -ImagePath "C:\Installs\Windows11\23H2\install.wim"
 ```
 
-## Enterprise Image
+## Export Enterprise Image
 ```
 Dism /export-image /sourceimagefile:C:\Installs\Windows11\23H2\install.wim /sourceindex:3 /destinationimagefile:C:\Images\Images\Enterprise.wim
 ```
 
-## Education Image
+## Export Education Image
 ```
 Dism /export-image /sourceimagefile:C:\Installs\Windows11\23H2\install.wim /sourceindex:1 /destinationimagefile:C:\Images\Images\Education.wim
 ```
 
-## Pro Image
+## Export Pro Image
 ```
 Dism /export-image /sourceimagefile:C:\Installs\Windows11\23H2\install.wim /sourceindex:5 /destinationimagefile:C:\Images\Images\Pro.wim
 ```
