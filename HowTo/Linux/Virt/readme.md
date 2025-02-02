@@ -1,4 +1,4 @@
-# Inprogess Project Cockpit on Ubuntu
+# In progress Project Cockpit on Ubuntu
 
 ## Commands to install services
     sudo apt install qemu qemu-kvm virt-manager bridge-utils
@@ -10,14 +10,11 @@
 ## Enable libvirt service
     sudo systemctl enable libvirtd.service && sudo systemctl start libvirtd.service
 
-
-
 ## Command to install Cockpit module
     sudo apt install cockpit-machines
 
 ## Cockpit URL
     https://serverIP:9090/
-
 
 ## Commands to create VM
 virt-install \

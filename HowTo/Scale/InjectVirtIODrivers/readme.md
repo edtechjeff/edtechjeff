@@ -1,8 +1,7 @@
-# Inject VirtIO Drivers for Scale
+# Inject VirtIO Drivers for Scale and Make ISO
 
 [Link to article with source information](https://portal.nutanix.com/page/documents/kbs/details?targetId=kA00e000000bt28CAA)
 
-# Make WIM into ISO
 
 ## Make Directories
 mkdir F:\VirtIO\windows_temp,F:\VirtIO\mountBoot,F:\VirtIO\mountInstall,F:\BaseISO,F:\VirtIODrivers

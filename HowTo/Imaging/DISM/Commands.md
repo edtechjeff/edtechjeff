@@ -1,5 +1,7 @@
-ipGet list of index of install wim
-powershell Get-WindowsImage -ImagePath "C:\Installs\Windows11\23H2\install.wim"
+# Random DISM Commands
+
+## Get list of index of install wim
+`powershell Get-WindowsImage -ImagePath "C:\Installs\Windows11\23H2\install.wim"`
 #############################################################################################################
 Enterprise Image
 Dism /export-image /sourceimagefile:C:\Installs\Windows11\23H2\install.wim /sourceindex:3 /destinationimagefile:C:\Images\Images\Enterprise.wim
