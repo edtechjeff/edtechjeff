@@ -53,6 +53,11 @@ DISM /Image:C:\Mount /Add-Driver /Driver:C:\drivers\production\ /recurse /ForceU
 dism /online /Export-Driver /Destination:c:\temp
 ```
 
+## Export Drivers out of CAB File (Not DISM but still helpful)
+```
+expand "WinPE11.0-Drivers-A05-TPKY4.cab" -f:* F:\Images\Drivers\WinPE
+```
+
 ## Get listing of package
 ```
 dism /Image:C:\images\mount /Get-Provisionedappxpackages
