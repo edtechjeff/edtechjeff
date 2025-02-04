@@ -53,7 +53,7 @@ Add-WindowsDriver -Path f:\VirtIO\mountInstall\ -Driver "F:\VirtIODrivers" -Recu
 ```
 Dismount-windowsImage -Path F:\VirtIO\mountinstall\ -Save
 ```
-## Create ISO
+## Create ISO (Note:Must have the Windows ADK tools installed on the machine to run this command.)
 ```
 oscdimg -lWindows11-VirtIO -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\VirtIO\windows_temp\ F:\Windows2022-VirtIO.iso
 ```
