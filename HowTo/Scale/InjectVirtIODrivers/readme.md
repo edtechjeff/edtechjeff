@@ -51,7 +51,7 @@ Add-WindowsDriver -Path f:\VirtIO\mountInstall\ -Driver "F:\VirtIODrivers" -Recu
 ```
 ## Unmount install.wim
 ```
-Dismount-windowsImage -Path F:\VirtIO\mountBoot\ -Save
+Dismount-windowsImage -Path F:\VirtIO\mountinstall\ -Save
 ```
 ## Create ISO
 ```
