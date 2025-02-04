@@ -61,7 +61,7 @@ oscdimg -lWindows11-VirtIO -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\
 $isoName = Read-Host "Enter the ISO name (without extension)"
 $isoPath = "F:\VirtIO\$isoName.iso"
 
-oscdimg -l$isoName -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\VirtIO\windows_temp\ $isoPath
+oscdimg -l$isoName -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\ $isoPath
 ```
 
 
