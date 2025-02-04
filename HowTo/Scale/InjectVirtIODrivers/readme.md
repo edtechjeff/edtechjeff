@@ -66,6 +66,7 @@ $folders = @(
     "F:\VirtIO\mountInstall",
     "F:\BaseISO",
     "F:\VirtIODrivers"
+    "F:\VirtIO"
 )
 
 foreach ($folder in $folders) {
