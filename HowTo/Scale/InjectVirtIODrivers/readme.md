@@ -13,7 +13,7 @@ mkdir F:\VirtIO\windows_temp,F:\VirtIO\mountBoot,F:\VirtIO\mountInstall,F:\BaseI
 ## Copies files to correct folders
 Copy-Item F:\BaseISO\* F:\VirtIO\windows_temp\ -Recurse
 
-## Set Permissions
+## Set Permissions on Folder
 attrib -r F:\BaseISO\sources\*.wim /s
 
 ## Look up Index number for install.WIM
