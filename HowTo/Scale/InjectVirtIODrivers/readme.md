@@ -4,8 +4,9 @@
 
 
 ## Make Directories
+```
 mkdir F:\VirtIO\windows_temp,F:\VirtIO\mountBoot,F:\VirtIO\mountInstall,F:\BaseISO,F:\VirtIODrivers
-
+```
 ## Copy Contents of Mounted CD to BaseISO Folder
 
 ## Copy VirtIO drivers to the VirtIODrivers
@@ -55,4 +56,24 @@ Dismount-windowsImage -Path F:\VirtIO\mountBoot\ -Save
 ## Create ISO
 ```
 oscdimg -lWindows11-VirtIO -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\VirtIO\windows_temp\ F:\VirtIO\Windows11-VirtIO.iso\
+```
+
+## Clean Up the environment
+```
+$folders = @(
+    "F:\VirtIO\windows_temp",
+    "F:\VirtIO\mountBoot",
+    "F:\VirtIO\mountInstall",
+    "F:\BaseISO",
+    "F:\VirtIODrivers"
+)
+
+foreach ($folder in $folders) {
+    if (Test-Path $folder) {
+        Remove-Item -Path $folder -Recurse -Force -ErrorAction SilentlyContinue
+        Write-Output "Deleted: $folder"
+    } else {
+        Write-Output "Not found: $folder"
+    }
+}
 ```
