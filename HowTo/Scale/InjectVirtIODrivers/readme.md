@@ -57,11 +57,12 @@ Dismount-windowsImage -Path F:\VirtIO\mountinstall\ -Save
 ```
 oscdimg -lWindows11-VirtIO -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\VirtIO\windows_temp\ F:\VirtIO\Windows11-VirtIO.iso\
 ```
+
 ```
 $isoName = Read-Host "Enter the ISO name (without extension)"
-$isoPath = "F:\VirtIO\$isoName.iso"
+$isoPath = "F:\"
 
-oscdimg -l$isoName -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\ $isoPath
+oscdimg -l$isoName -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\VirtIO\windows_temp\ $isoPath
 ```
 
 
