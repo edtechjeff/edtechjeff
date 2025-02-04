@@ -55,16 +55,8 @@ Dismount-windowsImage -Path F:\VirtIO\mountinstall\ -Save
 ```
 ## Create ISO
 ```
-oscdimg -lWindows11-VirtIO -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\VirtIO\windows_temp\ F:\VirtIO\Windows11-VirtIO.iso\
+oscdimg -lWindows11-VirtIO -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\VirtIO\windows_temp\ F:\Windows2022-VirtIO.iso
 ```
-
-```
-$isoName = Read-Host "Enter the ISO name (without extension)"
-$isoPath = "F:\"
-
-oscdimg -l$isoName -m -u2 -bF:\VirtIO\windows_temp\boot\etfsboot.com F:\VirtIO\windows_temp\ $isoPath
-```
-
 
 ## Clean Up the environment
 ```
