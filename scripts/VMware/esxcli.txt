@@ -1,0 +1,102 @@
+###Cleanup Stuff
+esxcli network ip dns server list
+esxcli network ip dns server remove -s IP OF DNS SERVER
+esxcli network ip dns search list
+esxcli network ip dns search remove -d 
+
+esxcli system shutdown reboot --reason=afterconfig
+esxcli system maintenanceMode set --enable false
+
+#################################################################################################################################
+###Config Host 17
+
+esxcli system maintenanceMode set --enable true
+esxcli system module parameters set -m tcpip4 -p ipv6=0
+esxcli network vswitch standard uplink add --uplink-name=vmnic4 --vswitch-name=vSwitch0
+esxcli network vswitch standard add --vswitch-name=vSwitch1 --ports=24
+esxcli network vswitch standard uplink add --uplink-name=vmnic1 --vswitch-name=vSwitch1
+esxcli network vswitch standard uplink add --uplink-name=vmnic5 --vswitch-name=vSwitch1
+esxcli network vswitch standard portgroup add --portgroup-name=vMotion --vswitch-name=vSwitch1
+esxcli network ip interface add --interface-name=vmk1 --portgroup-name=vMotion
+esxcli network ip interface ipv4 set --interface-name=vmk1 --ipv4=10.10.100.1 --netmask=255.255.255.0 --type=static
+esxcli network ip interface tag add -i vmk1 -t VMotion
+esxcli system hostname set --host=esxi01 --domain=KRCCNET.LOCAL
+esxcli system hostename set --fqdn=esxi01.KRCCNET.LOCAL
+esxcli network ip dns server add --server=172.16.1.34
+esxcli network ip dns server add --server=172.16.1.26
+esxcli network ip dns search add --domain=KRCCNET.LOCAL
+echo "server 0.north-america.pool.ntp.org, 1.north-america.pool.ntp.org, 2.north-america.pool.ntp.org, 3.north-america.pool.ntp.org" >> /etc/ntp.conf
+cat /etc/ntp.conf
+esxcli network firewall ruleset set --ruleset-id=ntpClient --enabled=true
+chkconfig ntpd on
+/etc/init.d/ntpd start
+
+esxcli network nic list
+esxcli network vswitch standard list | grep Uplinks
+esxcli network ip interface ipv4 get
+esxcli network ip route ipv4 list
+esxcli network vswitch standard portgroup list
+esxcli system hostname get
+esxcli network ip dns server list
+esxcli network ip dns search list
+
+esxcli system shutdown reboot --reason=afterconfig
+esxcli system maintenanceMode set --enable false
+
+##################################################################################################################################
+###Config Host 18
+esxcli system maintenanceMode set --enable true
+esxcli system module parameters set -m tcpip4 -p ipv6=0
+esxcli network vswitch standard uplink add --uplink-name=vmnic5 --vswitch-name=vSwitch0
+esxcli network vswitch standard add --vswitch-name=vSwitch1 --ports=24
+esxcli network vswitch standard uplink add --uplink-name=vmnic1 --vswitch-name=vSwitch1
+esxcli network vswitch standard uplink add --uplink-name=vmnic4 --vswitch-name=vSwitch1
+esxcli network vswitch standard portgroup add --portgroup-name=vMotion --vswitch-name=vSwitch1
+esxcli network ip interface add --interface-name=vmk1 --portgroup-name=vMotion
+esxcli network ip interface ipv4 set --interface-name=vmk1 --ipv4=10.10.100.2 --netmask=255.255.255.0 --type=static
+esxcli network ip interface tag add -i vmk1 -t VMotion
+esxcli system hostname set --host=esxi02 --domain=KRCCNET.LOCAL
+esxcli system hostename set --fqdn=esxi02.KRCCNET.LOCAL
+esxcli network ip dns server add --server=172.16.1.34
+esxcli network ip dns server add --server=172.16.1.26
+esxcli network ip dns search add --domain=KRCCNET.LOCAL
+echo "server 0.north-america.pool.ntp.org, 1.north-america.pool.ntp.org, 2.north-america.pool.ntp.org, 3.north-america.pool.ntp.org" >> /etc/ntp.conf
+cat /etc/ntp.conf
+esxcli network firewall ruleset set --ruleset-id=ntpClient --enabled=true
+chkconfig ntpd on
+/etc/init.d/ntpd start
+
+esxcli network nic list
+esxcli network vswitch standard list | grep Uplinks
+esxcli network ip interface ipv4 get
+esxcli network ip route ipv4 list
+esxcli network vswitch standard portgroup list
+esxcli system hostname get
+esxcli network ip dns server list
+esxcli network ip dns search list
+
+esxcli system shutdown reboot --reason=afterconfig
+esxcli system maintenanceMode set --enable false
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+
+esxcli network vswitch standard add --vswitch-name=vSwitch1 --ports=24
+esxcli network vswitch standard uplink add --uplink-name=vmnic0 --vswitch-name=vSwitch0
+esxcli network vswitch standard uplink add --uplink-name=vmnic1 --vswitch-name=vSwitch0
+esxcli network vswitch standard uplink add --uplink-name=vmnic2 --vswitch-name=vSwitch0
+esxcli network vswitch standard uplink add --uplink-name=vmnic3 --vswitch-name=vSwitch0
+esxcli network vswitch standard policy failover set --active-uplinks=vmnic0,vmnic1,vmnic2,vmnic3 --vswitch-name=vSwitch0
+esxcli network vswitch standard portgroup policy failover set --portgroup-name="Management Network" --active-uplinks=vmnic0,vmnic1,vmnic2,vmnic3
+esxcli network vswitch standard portgroup add --portgroup-name=ESXHOST1-prod0 --vswitch-name=vSwitch0
+esxcli network vswitch standard portgroup remove --portgroup-name="VM Network" --vswitch-name=vSwitch0
+esxcli network vswitch standard add --vswitch-name=vSwitch1
+esxcli network vswitch standard uplink add --uplink-name=vmnic1 --vswitch-name=vSwitch1
+esxcli network vswitch standard uplink add --uplink-name=vmnic2 --vswitch-name=vSwitch1
+esxcli network vswitch standard policy failover set --active-uplinks=vmnic1,vmnic2 --vswitch-name=vSwitch1

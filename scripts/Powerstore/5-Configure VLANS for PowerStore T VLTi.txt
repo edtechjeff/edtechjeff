@@ -1,0 +1,68 @@
+#Note: Run on both switches
+
+#create a new management VLAN
+interface vlan <ID>
+
+#add a description to the management VLAN
+description <VLAN description> 
+
+#enable the port
+no shutdown
+#################################################
+#create a new iSCSI VLAN
+interface vlan <ID>
+
+#add a description to the iSCSI VLAN
+description <VLAN description>
+
+#enable the port
+no shutdown
+#################################################
+#create a new NAS VLAN
+interface vlan <ID>
+
+#add a description to the NAS VLAN
+description <VLAN description>
+
+#enable the port
+no shutdown
+
+#create a second NAS VLAN
+interface vlan <ID>
+
+#add a description to the second NAS VLAN
+description <VLAN description>
+
+#enable the port
+no shutdown
+################################################
+#identify the LACP port-channel for node A to be configured
+interface port-channel 10
+
+#allow this node A port-channel to accept traffic on the native VLAN
+switchport access vlan 1
+
+#enable trunk mode
+switchport mode trunk
+
+#allow node A traffic on the iSCSI and NAS VLANs
+switchport trunk allowed vlan <comma-separated VLANs>
+
+#configure the ports that are connected to nodes as spanning tree edge ports
+spanning-tree port type edge
+##################################################
+#identify the LACP port-channel for node B to be configured
+interface port-channel 20
+
+#allow this node A port-channel to accept traffic on the native VLAN
+switchport access vlan 1
+
+#enable trunk mode
+switchport mode trunk
+
+#allow node A traffic on the iSCSI and NAS VLANs
+switchport trunk allowed vlan <comma-separated VLANs>
+
+#configure the ports that are connected to nodes as spanning tree edge ports
+spanning-tree port type edge
+####################################################################################

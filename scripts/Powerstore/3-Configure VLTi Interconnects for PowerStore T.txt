@@ -1,0 +1,38 @@
+# SSH into switch
+ssh admin@IPOFSWITCH
+
+# Select ports to disable L2
+interface range ethernet 1/1/55-1/1/56
+
+# Disable L2 Mode on VLTi Ports
+no switchport
+
+# Create VLTi domain
+vlt-domain <ID>
+
+# Add the two VLTi ports to the new domain
+discovery-interface ethernet 1/1/55-1/1/56
+
+# Set backup destination
+backup destination <IP of Other Switch>
+
+# Set Switch Priority
+primary-priority <number from 1-65535>
+
+# Configure VLT-MAC -  Configure same on both sides
+vlt-mac <MAC address> 00:00:00:00:00:01
+
+
+# Copy Config to Running
+copy running-configuration startup-configuration
+
+#Duplicate above except
+
+# Set backup destination
+backup destination <IP of Other Switch>
+
+# Set Switch Priority (Set higher than other switch)
+primary-priority <number from 1-65535>
+
+
+

@@ -1,0 +1,78 @@
+#show version to verify os is Enterprise Edition
+show version
+
+#show LIC information that it is Perpetual and Active
+show license status
+
+#set hostname
+hostname "MGMT Switch Name"
+
+#Create MGMT vlan
+interface vlan VLANID
+
+#Change to managmenet port
+interface ethernet 1/1/1
+
+#Give descritipion 
+description “Node A management port”
+
+#make port allow switchport access to vlan 1
+switchport access vlan 1
+
+#make port a trunk port
+switchport mode trunk
+
+#allow trunk port access to vlan
+switchport trunk allowed vlan VLANID
+
+#enble port
+no shutdown
+###########################################################################
+#repeat for node B
+interface ethernet 1/1/2
+
+#Give descritipion 
+description “Node B management port”
+
+#make port allow switchport access to vlan 1
+switchport access vlan 1
+
+#make port a trunk port
+switchport mode trunk
+
+#allow trunk port access to vlan
+switchport trunk allowed vlan VLANID
+
+#enble port
+no shutdown
+###########################################################################
+#Configure Port for discovery
+interface ethernet 1/1/54
+
+#assign a description
+description Discovery_Laptop
+
+#make port allow switchport access to vlan 1
+switchport access vlan 1
+
+#enble port
+no shutdown
+###########################################################################
+#Configure Management IP for switch OOB
+interface mgmt 1/1/1
+
+#Set IP Address
+ip address IPOFMGMT/24
+
+#enable port
+no shutdown
+############################################################################
+# Configure Management Route
+management route 0.0.0.0/0 GWIP
+
+# Configure Time Services
+ntp server IPOFTIMESERVER
+
+# Commit Changes
+copy running-configuration startup-configuration
+

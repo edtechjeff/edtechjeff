@@ -1,0 +1,36 @@
+# Verify Version
+show version
+
+# Verify License Status
+show license status
+
+# Configure Hostname
+hostname <name>
+
+# Configure OOB Management IP
+interface mgmt 1/1/1
+
+# Configure IP Address
+ip address IPADDRESS/24
+
+# Enable Port
+no shutdown
+
+# Enable Route
+management route 0.0.0.0/0 IPDEFAULTGWIP
+
+# Set Time Server
+ntp server IPOFSERVER
+
+# Enable Spanning Tree
+spanning-tree mode rstp
+
+# Set Spanning Tree Priority (Set in increments of 4096)
+spanning-tree rstp priority 4096
+
+# Copy Config
+copy running-configuration startup-configuration
+
+## Repeat for Second Data Switch
+
+

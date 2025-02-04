@@ -1,0 +1,32 @@
+Do on both switches
+#####################################################################
+#create a new LACP port-channel
+interface port-channel <number>
+
+#add a description to the LACP port-channel
+description <port-channel description>
+
+#assign VLTi to the new port-channel
+vlt-port-channel <port-channel created above>
+#####################################################################
+#enable trunk mode
+switchport mode trunk
+
+#allow traffic on the management VLAN 
+switchport trunk allowed vlan <management VLAN>
+
+#allow traffic on the native VLAN
+switchport access vlan 1
+######################################################################
+#identify the port to be assigned to the port-channel
+interface ethernet chassis/slot/port
+
+#apply settings to a range of ports
+interface range ethernet chassis/slot/port-chassis/slot/port
+
+#activate the port
+no shutdown
+
+#active to set the port-channel active on this port
+channel-group <ID> mode active
+#######################################################################

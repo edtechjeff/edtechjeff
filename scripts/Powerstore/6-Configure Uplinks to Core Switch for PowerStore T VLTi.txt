@@ -1,0 +1,26 @@
+# Done on both switches
+###########################################################################
+#create a new LACP port-channel
+interface port-channel <ID>
+
+#add a description to the LACP port-channel
+description "LACP port-channel for core switch uplink"
+
+#assign VLTi to the new port-channel
+vlt-port-channel <ID>
+############################################################################
+#enable trunk mode
+switchport mode trunk
+
+#allow node A traffic on the iSCSI and NAS VLANs
+switchport trunk allowed vlan <comma-separated VLANs>
+############################################################################
+#identify the port to be assigned to the port-channel
+interface ethernet chassis/slot/port
+
+#activate the port
+no shutdown 
+
+#set the port-channel active on this port
+channel-group <ID> mode active
+############################################################################

@@ -1,0 +1,11 @@
+## Enable iSCSI software adapter and associate iSCSI uplinks
+esxcli iscsi software set --enabled 1
+esxcli iscsi networkportal add -A vmhba64 -n vmk3
+esxcli iscsi networkportal add -A vmhba64 -n vmk4
+
+## Add dynamic targets
+esxcli iscsi adapter discovery sendtarget add -A vmhba64 -a IPOFTARGET
+esxcli iscsi adapter discovery sendtarget add -A vmhba64 -a IPOFTARGET
+
+## Rescan storage targets
+esxcli storage core adapter rescan -a vmhba64

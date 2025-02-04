@@ -1,0 +1,25 @@
+
+Run the following command to retrieve the MPIO feature:
+	Get-WindowsOptionalFeature -Online -FeatureName MultiPathIO
+
+Run the following command to install MPIO:
+	Enable-WindowsOptionalFeature -Online -FeatureName MultiPathIO
+
+Run the following commands to set vid/pid and Round-Robin failover policy:
+	New-MSDSMSupportedHW -VendorID DellEMC -ProductID PowerStore
+	Set-MSDSMGlobalDefaultLoadBalancePolicy -Policy RR
+
+Run the following commands to set MPIO timeout values:
+	Set-MPIOSetting -NewPathVerificationState Enabled
+	Set-MPIOSetting -NewPathVerificationPeriod 30
+	Set-MPIOSetting -NewPDORemovePeriod 20
+	Set-MPIOSetting -NewRetryCount 3
+	Set-MPIOSetting -NewRetryInterval 3
+	Set-MPIOSetting -custompathrecovery enabled
+	Set-MPIOSetting -newpathrecoveryinterval 10
+	Set-MPIOSetting -NewDiskTimeout 30
+
+To verify MPIO settings on the host, run the following command:
+	Get-MPIOSetting
+
+Use logical block size of 512B when creating and formatting volumes on PowerStore for Windows hosts.

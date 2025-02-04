@@ -1,0 +1,121 @@
+# Put Server into Maintenance Mode
+esxcli system maintenanceMode set --enable true
+
+# Set TCP\IP4 on and IPV6 Off
+esxcli system module parameters set -m tcpip4 -p ipv6=0
+esxcli network ip set --ipv6-enabled=false
+
+# Add VMNIC1 to vSwitch0
+esxcli network vswitch standard uplink add --uplink-name=vmnic1 --vswitch-name=vSwitch0
+
+# Add VMNIC1 as Failover for vSwitch0
+esxcli network vswitch standard policy failover set --active-uplinks=vmnic0,vmnic1 --vswitch-name=vSwitch0
+
+# Create Portgroup on vSwitch0
+esxcli network vswitch standard portgroup add --portgroup-name=VMNet-20-TestClient --vswitch-name=vSwitch0
+
+# Set vLAN ID on Portgroup
+esxcli network vswitch standard portgroup set -p VMNet-20-TestClient --vlan-id 20
+
+# Set vmnic0 as active and vmnic1 as standby
+esxcli network vswitch standard portgroup policy failover set -p VMNet-20-TestClient --active-uplinks vmnic0 --standby-uplinks vmnic1
+
+# Delete Portgroup VM Network
+esxcli network vswitch standard portgroup remove --portgroup-name="VM Network" --vswitch-name=vSwitch0
+
+# Create vSwitch1
+esxcli network vswitch standard add --vswitch-name=vSwitch1 --ports=24
+
+# Add Uplink vmnic2 to vSwitch1
+esxcli network vswitch standard uplink add --uplink-name=vmnic2 --vswitch-name=vSwitch1
+
+# Add Uplink vmnic3 to vSwitch2
+esxcli network vswitch standard uplink add --uplink-name=vmnic3 --vswitch-name=vSwitch1
+
+# Set vnic2,vnic3 as Active\Active
+esxcli network vswitch standard policy failover set --active-uplinks=vmnic2,vmnic3 --vswitch-name=vSwitch1
+
+# Create vMotion Port on vSwitch1
+esxcli network vswitch standard portgroup add --portgroup-name=vMotion1 --vswitch-name=vSwitch1
+
+# set Vlan ID on Portgroup
+esxcli network vswitch standard portgroup set -p vMotion1 --vlan-id 4
+
+# Create vmk1 Port
+esxcli network ip interface add --interface-name=vmk1 --portgroup-name=vMotion1
+
+# Set IP address on vmk1
+esxcli network ip interface ipv4 set --interface-name=vmk1 --ipv4=192.168.134.27 --netmask=255.255.255.0 --type=static
+
+# Set vmk as VMotion
+esxcli network ip interface tag add -i vmk1 -t VMotion
+
+# Set MTU to 9000
+esxcli network ip interface set -m 9000 -i vmk1
+
+# Set vmnic2 as active and vmnic3 as standby
+esxcli network vswitch standard portgroup policy failover set -p vMotion1 --active-uplinks vmnic2 --standby-uplinks vmnic3
+
+
+esxcli network vswitch standard portgroup add --portgroup-name=FT --vswitch-name=vSwitch1
+esxcli network vswitch standard portgroup set -p FT --vlan-id 5
+esxcli network ip interface add --interface-name=vmk3 --portgroup-name=FT
+esxcli network ip interface ipv4 set --interface-name=vmk3 --ipv4=192.168.135.27 --netmask=255.255.255.0 --type=static
+esxcli network ip interface tag add -i vmk3 -t faultToleranceLogging
+esxcli network ip interface set -m 9000 -i vmk3
+esxcli network vswitch standard portgroup policy failover set -p FT --active-uplinks vmnic2 --standby-uplinks vmnic3
+
+esxcli network vswitch standard portgroup add --portgroup-name=iSCSI-130 --vswitch-name=vSwitch1
+esxcli network vswitch standard portgroup set -p iSCSI-130 --vlan-id 6
+esxcli network ip interface add --interface-name=vmk4 --portgroup-name=iSCSI-130
+esxcli network ip interface ipv4 set --interface-name=vmk4 --ipv4=192.168.130.60 --netmask=255.255.255.0 --type=static
+esxcli network ip interface set -m 9000 -i vmk4
+esxcli network vswitch standard portgroup policy failover set -p iSCSI-130 --active-uplinks vmnic2 --standby-uplinks vmnic3
+
+esxcli network vswitch standard portgroup add --portgroup-name=iSCSI-131 --vswitch-name=vSwitch1
+esxcli network vswitch standard portgroup set -p iSCSI-131 --vlan-id 7
+esxcli network ip interface add --interface-name=vmk5 --portgroup-name=iSCSI-131
+esxcli network ip interface ipv4 set --interface-name=vmk5 --ipv4=192.168.131.61 --netmask=255.255.255.0 --type=static
+esxcli network ip interface set -m 9000 -i vmk5
+esxcli network vswitch standard portgroup policy failover set -p iSCSI-131 --active-uplinks vmnic3 --standby-uplinks vmnic2
+
+esxcli network vswitch standard portgroup add --portgroup-name=iSCSI-132 --vswitch-name=vSwitch1
+esxcli network vswitch standard portgroup set -p iSCSI-132 --vlan-id 8
+esxcli network ip interface add --interface-name=vmk6 --portgroup-name=iSCSI-132
+esxcli network ip interface ipv4 set --interface-name=vmk6 --ipv4=192.168.132.62 --netmask=255.255.255.0 --type=static
+esxcli network ip interface set -m 9000 -i vmk6
+esxcli network vswitch standard portgroup policy failover set -p iSCSI-132 --active-uplinks vmnic2 --standby-uplinks vmnic3
+
+esxcli network vswitch standard portgroup add --portgroup-name=iSCSI-133 --vswitch-name=vSwitch1
+esxcli network vswitch standard portgroup set -p iSCSI-133 --vlan-id 9
+esxcli network ip interface add --interface-name=vmk7 --portgroup-name=iSCSI-133
+esxcli network ip interface ipv4 set --interface-name=vmk7 --ipv4=192.168.133.63 --netmask=255.255.255.0 --type=static
+esxcli network ip interface set -m 9000 -i vmk7
+esxcli network vswitch standard portgroup policy failover set -p iSCSI-133 --active-uplinks vmnic3 --standby-uplinks vmnic2
+
+esxcli network vswitch standard portgroup add --portgroup-name=VMnet-6-iSCSI --vswitch-name=vSwitch1
+esxcli network vswitch standard portgroup set -p VMnet-6-iSCSI --vlan-id 6
+
+esxcli system hostname set --host=esxi-27 --domain=ogcinc.org
+esxcli system hostename set --fqdn=esxi-27.oginc.org
+esxcli network ip dns server add --server=192.168.201.40
+esxcli network ip dns server add --server=192.168.201.41
+esxcli network ip dns search add --domain=ogcinc.org
+
+echo "ntp1.ogcinc.org, ntp2.ogcinc.net" >> /etc/ntp.conf
+cat /etc/ntp.conf
+esxcli network firewall ruleset set --ruleset-id=ntpClient --enabled=true
+chkconfig ntpd on
+/etc/init.d/ntpd start
+
+esxcli network nic list
+esxcli network vswitch standard list | grep Uplinks
+esxcli network ip interface ipv4 get
+esxcli network ip route ipv4 list
+esxcli network vswitch standard portgroup list
+esxcli system hostname get
+esxcli network ip dns server list
+esxcli network ip dns search list
+
+esxcli system shutdown reboot --reason=afterconfig
+esxcli system maintenanceMode set --enable false

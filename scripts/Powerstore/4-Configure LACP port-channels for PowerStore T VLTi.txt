@@ -1,0 +1,36 @@
+# SSH into data switch
+###############################################################
+# Create on Node A port-channel
+ssh admin@<IP>
+
+# Create LACP port-channel # Example 10
+interface port-channel <number>
+
+# add a description to the LACP port-channel
+description <port-channel description>
+
+assign VLTi to the new port-channel
+vlt-port-channel <port-channel created above>
+###############################################################
+# Create on Node B port-channel
+# Create LACP port-channel # Example 20
+interface port-channel <number>
+
+# add a description to the LACP port-channel
+description <port-channel description>
+
+assign VLTi to the new port-channel
+vlt-port-channel <port-channel created above>
+###############################################################
+# identify the port to be assigned to the node A port-channel
+interface ethernet chassis/slot/port
+
+# set the node A port-channel active on this port
+channel-group <ID> mode active
+
+# identify the next port to be assigned to the node B port-channel
+interface ethernet chassis/slot/port
+
+# set the node B port-channel active on this port
+channel-group <ID> mode active
+###############################################################

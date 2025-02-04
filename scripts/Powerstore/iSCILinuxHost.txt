@@ -1,0 +1,15 @@
+#view initator name
+more /etc/iscsi/initatorname.iscsi
+
+#discover the Linux host initiator in the PowerStore cluster
+iscsiadm -m discovery -t sendtargets -p ip:port
+#Example
+/sbin/iscsiadm -m discovery -t sendtargets -p 192.168.2.42:3260
+
+#log into the discovered targets
+iscsiadm -m node -p ip:port -l 
+#Example 
+/sbin/iscsiadm -m node -p 192.168.2.40 -l
+
+#Verify State
+service iscsi status
