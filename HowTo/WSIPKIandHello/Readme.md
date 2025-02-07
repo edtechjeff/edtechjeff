@@ -40,7 +40,7 @@
 - Do you want help setting up Intune certificate deployment, or do you already have a cloud-based CA ready?
 
 
-# How to setup the microsoft PKI
+# How to setup the Microsoft PKI
 ## Setting Up Microsoft Cloud PKI for Windows Hello for Business (WHfB) with CBA
 ## Microsoft Cloud PKI is a cloud-based certificate authority that integrates with Intune to issue and manage certificates without an on-premises PKI. Here's how to set it up for Windows Hello for Business (WHfB) with Certificate-Based Authentication (CBA).
 
@@ -51,21 +51,18 @@
 
 2️⃣ Enable Microsoft Cloud PKI in Intune
 - Go to Microsoft Intune Admin Center
-
 - Navigate to Microsoft Intune
 - Go to Tenant Administration > Cloud PKI (Preview)
 - Click Create a Root CA
 - Provide a name (e.g., "MyOrg Cloud Root CA")
 - Click Create
 - Create an Issuing CA
-
 - Click Create an Issuing CA
 - Link it to the Root CA
 - Click Create
 
 3️⃣ Configure Intune Certificate Profiles
 - You’ll create two certificate profiles in Intune:
-
 - Root CA Profile (delivers the root certificate to devices)
 - SCEP Certificate Profile (issues user certificates for authentication)
 - Step 1: Deploy the Root CA Profile
