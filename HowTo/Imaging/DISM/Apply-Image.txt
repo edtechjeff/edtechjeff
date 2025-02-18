@@ -116,3 +116,6 @@ W:\Windows\System32\bcdboot W:\Windows /s S:
 @if %CONFIGRECOVERY%==Y ApplyRecovery.bat
 @if not %CONFIGRECOVERY%==Y GOTO END
 :END
+@echo *********************************************************************
+@Installing Device Drivers
+dism /image:W:\ /add-driver /driver:"\Drivers\%Model%" /recurse /forceunsigned

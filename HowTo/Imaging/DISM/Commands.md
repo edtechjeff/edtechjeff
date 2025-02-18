@@ -130,3 +130,8 @@ dism /image:\images\mount /Remove-Provisionedappxpackage /PackageName:Microsoft.
 
 - Mirror the System drive so that you have a directory with the following path sources\$OEM$\$$\Setup\Scripts (C:\Windows\Setup\Scripts)
 - In regards to the scripts being run from the unattend.xml file, you simply have to call the scripts from %SystemDrive%\WinDir\Setup\Scripts
+
+# Pull Model Name of device
+```
+(Get-CimInstance -ClassName Win32_ComputerSystem).Model
+```
