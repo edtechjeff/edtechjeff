@@ -397,7 +397,7 @@ ECHO  Please Wait for script to finish
 :FINISH
 REM -------------- Clean up and unmount Windows and WinRE
 cls
-ECHO.
+ECHO
 ECHO =========================================================
 ECHO Clean up and store WinRE 
 ECHO =========================================================
