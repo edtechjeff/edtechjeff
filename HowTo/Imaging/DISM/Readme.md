@@ -3,6 +3,16 @@
 
 In this article we are going to cover how to setup a WDS server to PXE boot and utilize the ADK also. I found this great [article](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/system-builder-deployment?view=windows-11) that I got the original idea from and base files.  
 
+# Files
+There are files in this repo that will be used or replaced
+- Apply-Image
+    -  Apply-Image (File already exist but just modified to answer questions automatically)
+    -  Apply-Image V2 (This file has additional modifications that will pull the Model name from the registry and inject drivers into the applied image use which ever one)
+    - *Note in order for this to work correctly your drivers folders name will need to match that of the model name*
+- MaintenanceTask (Used to perform extract and adding of drivers)
+- MaintenanceTaskBasic (Not required, experimental)
+- WinPEMenu (Main Menu System for imaging)
+
 ---
 
 Here is a listing of items and things you need to have
