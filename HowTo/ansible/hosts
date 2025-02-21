@@ -1,0 +1,22 @@
+#example host file
+[testservers]
+testcentos.demo.lan
+
+[vcenter]
+vcenter.demo.lan
+
+[centos]
+vcenter.demo.lan
+
+[esxi]
+LabESXi.demo.lan
+
+[nestedesxi]
+10.0.0.240
+10.0.0.241
+
+[windows]
+Win10.DOWNS.LAN
+
+[winservers]
+dc01.DOWNS.LAN

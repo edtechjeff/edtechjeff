@@ -1,0 +1,28 @@
+---
+- vars_prompt:
+    - name: "update"
+      prompt: "Which Update"
+      private: no
+    - name: "hosts"
+      prompt: "Which Hosts"
+      private: no
+  hosts: "{{ hosts }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+  - name: Install KB
+    win_updates:
+      category_names:
+        - Updates
+        - SecurityUpdates
+        - CriticalUpdates
+        - UpdateRollups
+        - DefinitionUpdates
+        - WindowsDefender
+        - Drivers
+        - Tools
+      whitelist:
+      - "{{ update }}"
+      reboot: yes

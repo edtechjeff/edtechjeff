@@ -1,0 +1,26 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/vmware.yml
+  tasks:
+    - name: join domain
+      vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+        datacenter: "{[ datacenter }}"
+        cluster: "{{ cluster }}"
+        name: "{{ vm_name }}"
+        customization: 
+          domain: "{{ domain }}"
+          domainadmin: "{[ domainadmin }}"
+          domainadminpassword: "{{ domainadminpassword }}"
+          joindomain: yes
+          timezone: "{{ timezone }}"

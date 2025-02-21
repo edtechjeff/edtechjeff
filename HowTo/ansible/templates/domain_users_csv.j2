@@ -1,0 +1,13 @@
+---
+users:
+{% for item in csvfile.split("\n") %}
+{%   if loop.index != 1 %}
+{%     set list = item.split(",") %}
+  {{ list[0]|trim() }}:
+    firstname: {{ list[1]|trim() }}
+    surname: {{ list[2]|trim() }}
+    password: {{ list[3]|trim() }}
+    email: {{ list[4]|trim() }}
+    upn: {{ list[5]|trim() }}
+{%   endif %}
+{% endfor %}

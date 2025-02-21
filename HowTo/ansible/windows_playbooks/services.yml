@@ -1,0 +1,16 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+    - name: set service to delayed
+      win_service:
+        name: UsoSvc
+        start_mode: delayed
+        state: started

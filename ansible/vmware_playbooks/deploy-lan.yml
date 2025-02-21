@@ -1,6 +1,0 @@
----
-- hosts: all
-  gather_facts: false
-  vars_files: /etc/ansible/group_vars/lan1.yml
-  roles:
-     - deploy-vsphere-template

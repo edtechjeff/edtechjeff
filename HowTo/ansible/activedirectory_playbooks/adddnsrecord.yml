@@ -1,0 +1,15 @@
+---
+- hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+  - name: Add DNS Record
+    win_dns_record:
+      computer_name: "{{ DNS_Server }}"
+      name: "{{ name }}"
+      type: A
+      value: "{{ value }}"
+      zone: "{{ zone }}"
+      state: present

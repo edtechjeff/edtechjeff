@@ -1,9 +1,0 @@
-- name: Checkin
-  win_updates:
-    category_names: 
-      - SecurityUpdates
-      - CriticalUpdates
-    state: searched
-- name: Trigger Poll
-  win_shell:
-    wuauclt /reportnow

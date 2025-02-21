@@ -1,0 +1,22 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/vmware.yml
+  tasks:
+  - name: Start hostd Service
+    vmware_host_service_manager:
+      hostname: "{{ esxi_hostname }}"
+      username: "{{ esxi_username }}"
+      password: "{{ esxi_password }}"
+      esxi_hostname: "{{ esxi_hostname }}"
+      service_name: hostd
+      service_policy: on
+      state: present
+      validate_certs: False
+    delegate_to: localhost

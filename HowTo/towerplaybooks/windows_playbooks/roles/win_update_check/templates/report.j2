@@ -1,0 +1,6 @@
+{% for i in groups[approved_group] %}
+    {{ i }}:
+    {% for update in hostvars[i]['win_updates_result']['updates'] %}}
+        "{{ hostvars[i]['win_updates_result']['updates'][update]['kb'] }}" : "{{hostvars[i]['win_updates_result']['updates'][update]['title'] }}"
+    {% endfor %}
+{% endfor %}

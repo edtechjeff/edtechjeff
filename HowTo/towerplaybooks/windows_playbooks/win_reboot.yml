@@ -1,0 +1,6 @@
+---
+- name: Checkin and Install all Updates to Servers
+  hosts: "{{ host }}"
+  gather_facts: false
+  roles:
+    - win_reboot

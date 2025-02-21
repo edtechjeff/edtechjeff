@@ -1,0 +1,17 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+    - name: Get Uptime
+      win_shell: (get-date) - (gcim Win32_OperatingSystem).LastBootUpTime
+      register: shell_result
+    - name: List Uptime
+      debug:
+        var: shell_result.stdout_lines

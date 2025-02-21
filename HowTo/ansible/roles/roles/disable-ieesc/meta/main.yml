@@ -1,0 +1,12 @@
+---
+galaxy_info:
+  author: "Jeff Downs"
+  company: SIS
+  license: BSD
+  min_ansible_version: 1.9
+  platforms:
+   - name: Windows
+     versions:
+      - 2019
+      - 2016
+dependencies: []

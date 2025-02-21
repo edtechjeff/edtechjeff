@@ -1,5 +1,0 @@
----
-ansible_user: "{{ ssh_user }}"
-ansible_password: "{{ vault_linux_user_password }}"
-ansible_port: 22
-ansible_connection: ssh

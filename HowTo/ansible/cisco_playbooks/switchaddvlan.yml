@@ -1,0 +1,26 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  connection: local
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/switches.yml
+  tasks:
+  - name: Create vlan
+    ios_vlan:
+      vlan_id: "{{ vlan_id }}"
+      name: "{{ vlan_name }}"
+      state: present
+  - name: Show vlan
+    ios_command:
+      commands: show vlan brief
+    register: show_vlan
+  - debug: var=show_vlan.stdout_lines
+  - name: save ios
+    ios_config
+      save_when: modified
+      when: not ansible_check_mode

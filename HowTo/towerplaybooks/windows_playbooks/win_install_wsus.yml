@@ -1,0 +1,11 @@
+---
+- hosts: "{{ ansible_play_batch }}"
+  gather_facts: false
+  tasks:
+  - name: WSUS Install
+    win_shell:
+      Install-WindowsFeature -Name UpdateServices, UpdateServices-WidDB, UpdateServices-Services, UpdateServices-RSAT, UpdateServices-API, UpdateServices-UI
+  - name: Create Updates Directory
+    win_file:
+      path: c:\updates
+      state: directory

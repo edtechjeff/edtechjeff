@@ -1,0 +1,15 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/windows.yml
+  tasks:
+    - name: Uninstall Chrome
+      win_package:
+        product_id: '{6A6D3422-8127-3867-A83C-56B555636ECA}'
+        state: absent

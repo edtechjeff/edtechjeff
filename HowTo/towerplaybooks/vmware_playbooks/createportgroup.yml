@@ -1,0 +1,35 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/vmware.ym
+- vars_prompt:
+    - name: "switch_name"
+      prompt: "Name of Switch"
+      private: no
+    - name: "portgroup_name"
+      prompt: "PortGroup Name"
+      private: no
+    - name: "vlan_id"
+      prompt: "vlan ID"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  tasks:
+  - name: Add a VMware vSwitch
+    vmware_portgroup:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      cluster_name: "{{ cluster_name }}"
+      switch: "{{ switch_name }}"
+      portgroup: "{{ portgroup_name }}"
+      vlan_id: "{{ vlan_id }}"
+      validate_certs: False
+      state: present
+    delegate_to: localhost

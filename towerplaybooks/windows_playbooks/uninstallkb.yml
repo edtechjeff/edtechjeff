@@ -1,7 +1,0 @@
----
-- name: to check WSUS server if patches are waiting to be approved
-  hosts: "{{ ansible_host }}"
-  gather_facts: false
-  tasks:
-  - name: Uninstall hotfix with KB
-    win_shell: 'Get-WindowsPackage -Online | ?{$_.ReleaseType -like "*Update*"} | %{Get-WindowsPackage -Online -PackageName $_.PackageName} | ?{$_.Description -like "*{{ kb_number }}*"} | Remove-WindowsPackage -Online -NoRestart'

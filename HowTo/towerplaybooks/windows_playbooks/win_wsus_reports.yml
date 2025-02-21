@@ -1,0 +1,7 @@
+---
+- name: check for updates
+  hosts: "{{ ansible_play_batch }}"
+  gather_facts: false
+  roles:
+     - win_update_check
+     

@@ -1,0 +1,38 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Which Host"
+      private: no
+    - name: "ip_address"
+      prompt: "IP of vMotion vmkernal Port"
+      private: no
+    - name: "vswitch"
+      prompt: "vSwitch Name"
+      private: no
+    - name: "portgroup_name"
+      prompt: "Name of Portgroup"
+      private: no
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars_files:
+    - /etc/ansible/vault/vault.yml
+    - /etc/ansible/group_vars/vmware.yml
+  tasks:
+    delegate_to: localhost
+# Add vMotion IP address
+  - name: Add vMotion vmkernel port with vMotion TCP/IP stack
+    vmware_vmkernel:
+      hostname: '{{ esxi_hostname }}'
+      username: '{{ esxi_username }}'
+      password: '{{ esxi_password }}'
+      esxi_hostname: '{{ esxi_hostname }}'
+      vswitch_name: "{{ vswitch }}"
+      portgroup_name: "{{ portgroup_name }}"
+      network:
+        type: 'static'
+        ip_address: "{{ ip_address }}"
+        subnet_mask: "{{ subnet_mask }}"
+        tcpip_stack: vmotion
+      state: present
+      validate_certs: False
+    delegate_to: localhost

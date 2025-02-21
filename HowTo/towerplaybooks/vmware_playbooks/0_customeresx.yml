@@ -1,0 +1,4 @@
+---
+- import_playbook: 1_configesx.yml
+- import_playbook: 2_configvcenter.yml
+- import_playbook: 3_addtocluster.yml

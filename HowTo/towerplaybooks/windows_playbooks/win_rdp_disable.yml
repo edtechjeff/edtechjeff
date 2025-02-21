@@ -1,0 +1,11 @@
+---
+- hosts: "{{ ansible_play_batch }}"
+  gather_facts: false
+  tasks:
+  - name: Disable Remote Desktop
+    win_shell:
+      Set-ItemProperty ‘HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\‘ -Name “fDenyTSConnections” -Value 1
+
+  - name: Enable Network Level Authentication
+    win_shell:
+      Set-ItemProperty ‘HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\‘ -Name “UserAuthentication” -Value 1

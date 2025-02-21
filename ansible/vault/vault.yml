@@ -1,7 +1,0 @@
-vault_switch_ssh_pass: 
-vault_switch_become_pass: 
-vault_linux_user_password:  
-vault_vcenter_password: 
-vault_esxi_password: 
-vault_ansible_windows_password: 
-vault_idrac_password:
