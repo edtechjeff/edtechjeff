@@ -1,10 +1,3 @@
-# Notes
-    # Entra, ID = ObjectID
-
-    # Autopilot, ID = AzureActiveDirectoryDeviceId
-
-    # DeviceID is the common ID between Entra and Autopilot
-############################################################################################################################
 # Listing all device in Entra ID and AutoPilot
 # Import the required module
 Import-Module Microsoft.Graph

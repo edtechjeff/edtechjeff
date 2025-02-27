@@ -1,10 +1,3 @@
-# Notes
-    # Entra, ID = ObjectID
-
-    # Autopilot, ID = AzureActiveDirectoryDeviceId
-
-    # DeviceID is the common ID between Entra and Autopilot
-############################################################################################################################
 # Get a list of device in Entra ID and AutoPilot and export to CSV
 
 # Import the required module
