@@ -22,7 +22,7 @@ if (!(Test-Path "C:\Temp")) { New-Item -ItemType Directory -Path "C:\Temp" -Forc
 
 # Retrieve Autopilot devices and export to CSV
 Get-MgDeviceManagementWindowsAutopilotDeviceIdentity |
-    Select-Object SerialNumber, Id, AzureActiveDirectoryDeviceId, ManagedDeviceId |
+    Select-Object SerialNumber, Id, AzureActiveDirectoryDeviceId |
     Export-Csv -Path $csvPath -NoTypeInformation
 
 Write-Host "Export completed: $csvPath"

@@ -17,7 +17,7 @@ $scopes = "Device.Read.All", "Group.ReadWrite.All"  # Adjust scopes as needed
 Connect-MgGraph -Scopes $scopes
 
 # Get a list of Devices in AzureAD
-Get-MgDevice -All -Property DisplayName, DeviceId, ApproximateLastSignInDateTime | Select-Object DisplayName, DeviceId, ApproximateLastSignInDateTime
+Get-MgDevice -All -Property DisplayName, DeviceId, Id, ApproximateLastSignInDateTime | Select-Object DisplayName, DeviceId, Id, ApproximateLastSignInDateTime
 
 # Disconnect from Microsoft Graph
 Disconnect-MgGraph

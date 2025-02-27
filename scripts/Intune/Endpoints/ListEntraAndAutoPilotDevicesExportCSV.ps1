@@ -22,7 +22,7 @@ $Devices = Get-MgDevice -All -Property DisplayName, DeviceId, Id, ApproximateLas
 
 # Retrieve Autopilot devices
 $AutopilotDevices = Get-MgDeviceManagementWindowsAutopilotDeviceIdentity | 
-    Select-Object SerialNumber, Id, AzureActiveDirectoryDeviceId, ManagedDeviceId
+    Select-Object SerialNumber, Id, AzureActiveDirectoryDeviceId
 
 # Join the data using AzureActiveDirectoryDeviceId to match with DeviceId
 $CombinedList = foreach ($device in $Devices) {
