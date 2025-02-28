@@ -1,16 +1,19 @@
-# Information About CSV and how it should look
-# Path,Group,Permissions
-# C:\Folder1,Domain\Group1,ReadAndExecute
-# C:\Folder2,Domain\Group2,Modify
+# works but turns off inheritance, still looking into getting this corrected
 
+$csvPath = "d:\scripts\Permis.csv"
 
-$csvPath = "d:\scripts\Perms.csv"
+if (!(Test-Path $csvPath)) {
+    Write-Output "Error: CSV file not found at $csvPath"
+    exit
+}
+
 $permissionsList = Import-Csv -Path $csvPath
 
 foreach ($entry in $permissionsList) {
     $folderPath = $entry.Path
     $group = $entry.Group
     $permissions = $entry.Permissions
+    $disableInheritance = $entry.DisableInheritance -as [bool]  # Convert CSV value to boolean
 
     # Validate folderPath
     if ([string]::IsNullOrWhiteSpace($folderPath)) {
@@ -30,19 +33,24 @@ foreach ($entry in $permissionsList) {
         # Get the current ACL
         $acl = Get-Acl -Path $folderPath
 
+        # Apply inheritance settings based on CSV flag
+        if ($disableInheritance) {
+            $acl.SetAccessRuleProtection($true, $true)  # Disables inheritance but keeps inherited permissions
+            Write-Output "Inheritance Disabled (kept inherited permissions) for $folderPath"
+        } else {
+            Write-Output "Inheritance Kept for $folderPath"
+        }
+
         # Create a new FileSystemAccessRule
-        $rule = New-Object System.Security.AccessControl.FileSystemAccessRule($group, $rights, "ContainerInherit, ObjectInherit", "None", "Allow")
+        $rule = New-Object System.Security.AccessControl.FileSystemAccessRule($group, $rights, "None", "None", "Allow")
 
         # Add the rule to the ACL
         $acl.SetAccessRule($rule)
 
-        # Enable inheritance
-        $acl.SetAccessRuleProtection($false, $true)
-
         # Apply the ACL back to the folder
         Set-Acl -Path $folderPath -AclObject $acl
 
-        Write-Output "Applied permissions to $folderPath for $group with $permissions"
+        Write-Output "Applied permissions to $folderPath for $group with $permissions (DisableInheritance: $disableInheritance)"
     } catch {
         Write-Output ("Error processing " + $folderPath + ": " + $_.Exception.Message)
     }

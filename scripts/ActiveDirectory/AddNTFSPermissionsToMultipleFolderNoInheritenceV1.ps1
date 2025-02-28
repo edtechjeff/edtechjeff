@@ -1,10 +1,10 @@
-# Information About CSV and how it should look
-# Path,Group,Permissions
-# C:\Folder1,Domain\Group1,ReadAndExecute
-# C:\Folder2,Domain\Group2,Modify
+$csvPath = "D:\Scripts\Perms.csv"
 
+if (!(Test-Path $csvPath)) {
+    Write-Output "Error: CSV file not found at $csvPath"
+    exit
+}
 
-$csvPath = "d:\scripts\Perms.csv"
 $permissionsList = Import-Csv -Path $csvPath
 
 foreach ($entry in $permissionsList) {
@@ -36,13 +36,12 @@ foreach ($entry in $permissionsList) {
         # Add the rule to the ACL
         $acl.SetAccessRule($rule)
 
-        # Enable inheritance
-        $acl.SetAccessRuleProtection($false, $true)
+        # **Do NOT modify inheritance settings**
 
         # Apply the ACL back to the folder
         Set-Acl -Path $folderPath -AclObject $acl
 
-        Write-Output "Applied permissions to $folderPath for $group with $permissions"
+        Write-Output "Applied permissions to $folderPath for $group with $permissions (Inheritance unchanged)"
     } catch {
         Write-Output ("Error processing " + $folderPath + ": " + $_.Exception.Message)
     }
