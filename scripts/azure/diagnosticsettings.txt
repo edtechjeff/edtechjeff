@@ -66,8 +66,7 @@ foreach ($Sub in $Subs) {
             # Add PS Object to array
             $DiagResults += $item
         }
-    }
-    
+    }  
 }
 # Save Diagnostic settings to CSV as tabular data
 $DiagResults | Export-Csv -Force -Path ".\AzureResourceDiagnosticSettings-$(get-date -f yyyy-MM-dd-HHmm).csv"
